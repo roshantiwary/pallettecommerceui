@@ -1,0 +1,8 @@
+{
+	"/boot/*" : {
+		"target": "http://www.palletteapart.com",
+		"changeOrigin": true,
+	    "secure": false,
+	    "logLevel": "debug"
+	}
+}

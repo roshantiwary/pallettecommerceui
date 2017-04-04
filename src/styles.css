@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,100i,300,300i,400,400i,500,500i,700,700i,900');
+
+body, strong {
+   font-family: 'Alegreya Sans SC', sans-serif;
+}
+button{
+    background: transparent;
+    border: none;
+    color: #676775;
+}
+
+button:hover {
+    color: #e85826;
+    -webkit-transition: all .2s cubic-bezier(.15,.69,.83,.67);
+    transition: all .2s cubic-bezier(.15,.69,.83,.67);
+}
+.list{
+     -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+    transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+    width: auto;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid #ece6e6;
+    margin: 20px 0;
+}
+
+.list:hover {
+    box-shadow: 0 2px 15px 5px rgba(0,0,0,.2);
+    -webkit-transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+    transition: box-shadow .2s cubic-bezier(.15,.69,.83,.67);
+}
+.menu-main-container {
+    margin: 0 auto;
+    max-width: 1185px;
+    margin-top: 23px;
+}
+.item-desc{
+    padding: 15px 10px;
+
+}
+.info h4 {
+    line-height: 1.63;
+    color: #343534;
+    margin: 0 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+.description {
+    -webkit-box-align: center;
+    align-items: center;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    color: #6f736f;
+}
+.info img{
+    width: 100% ;
+}

@@ -1,0 +1,42 @@
+<section id="cart" class="side-menu right transition {{1+3}} {{cartdetails.closeCartModel}}" [class.open]="cartdetails.closeCartModel" >
+  <div class="header">
+
+        <h4>Your Cart</h4>
+        <div class="back cart-menu-toggle" (click)="closeCart()"> 
+            close
+        </div>
+    </div>
+    <article *ngFor="let item of cartdetails.getCart()" class="row cartitem" id={{item.productId}}> 
+      <div class="col-md-4"><img src="/src/images/products/image1.jpg"></div>
+      <div class="col-md-8">
+        <div class="close" (click) = "removeProduct(item.productId)">×</div>
+        <h4>{{item.productTitle}}</h4>
+        <div class="cart-details">
+            <select (change)="AddItemtoCart(item.productId, $event.target.value)">
+               <option *ngFor="let cartQuantity of cartnumber"   [selected]= "cartQuantity == item.quantity">{{cartQuantity}}</option>  
+            </select>
+            ₹ {{item.amount}}
+        </div>
+        
+      </div>
+    </article>
+
+    <div *ngIf="cartdetails.getTotalCount() == 0" class="sw-empty-cart">
+
+	  <div class="cartempty">
+            Your cart is empty.
+        </div>
+        <a href="index.html" class="buttom-animate">Continue Shopping</a>
+    </div> 
+
+    <div class="total"  *ngIf="cartdetails.getTotalCount()  != 0" >
+            <label>SUBTOTAL</label>
+            ₹ {{cartTotal}}
+    </div>
+    <button *ngIf="cartdetails.getTotalCount()  != 0" >
+            Proceed to Checkout    
+    </button>
+    
+</section>
+
+<div class="overlay" id="overlay"></div>
