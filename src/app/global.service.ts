@@ -89,6 +89,12 @@ export class GlobalService {
 		
 	    return count;
 	}
+
+  // Get Order Summary for Checkout Pages
+  getOrderSummary(orderID:string) {
+     let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
+     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json);
+  }
     
     // openCart(){
     //   this.closeCartModel = true ;

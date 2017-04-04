@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
         .subscribe(
                   response => {
                   console.log(response) ;
-                  this.products = response.items;
+                  this.products = response.productResponse;
                   //localStorage.setItem('token', response);
           
                   },

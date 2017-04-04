@@ -5,10 +5,13 @@ import { NavComponent }  from './nav/nav.component';
 
 import { ProductComponent }  from './product/product.component';
 
+import { ShippingComponent } from './shipping/shipping.component';
+
 
 const app_routes: Routes = [
   { path: '',  component: StoresComponent },
-  { path: 'product/brands/:id',  component: ProductComponent }
+  { path: 'product/brands/:id',  component: ProductComponent },
+  { path: 'checkout/shipping', component: ShippingComponent}
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes); 
