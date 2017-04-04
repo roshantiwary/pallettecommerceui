@@ -81,7 +81,9 @@ export class GlobalService {
 
     getTotalCount(){
 	    var count:  number = 0;
+
 	   var retrievedObject =  JSON.parse(localStorage.getItem('items')) || [];
+
 	    for(let ii = 0 ; ii < retrievedObject.length; ii++) {
 	        var item = parseInt(retrievedObject[ii].quantity);
           console.log(item)
@@ -90,6 +92,12 @@ export class GlobalService {
 		
 	    return count;
 	}
+
+  // Get Order Summary for Checkout Pages
+  getOrderSummary(orderID:string) {
+     let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
+     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json);
+  }
     
     // openCart(){
     //   this.closeCartModel = true ;

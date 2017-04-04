@@ -15,6 +15,7 @@ import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { DialogDirective } from './dialog.directive';
 import { AppfooterComponent } from './appfooter/appfooter.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AppfooterComponent } from './appfooter/appfooter.component';
      DialogDirective,
      CartComponent,
      AppfooterComponent,
+     ShippingComponent,
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,
