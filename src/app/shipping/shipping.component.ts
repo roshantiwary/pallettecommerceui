@@ -8,7 +8,8 @@ import { GlobalService } from '../global.service';
   providers: [GlobalService]
 })
 export class ShippingComponent implements OnInit {
-  order: Object;
+  items: any;
+  orderTotal: any;
   orderID:string ;
   constructor(private globalService: GlobalService) { }
 
@@ -23,7 +24,8 @@ export class ShippingComponent implements OnInit {
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
-                        this.order = response;
+                        this.items = response.cartItems;
+                        this.orderTotal = response.orderSubTotal;
                        // localStorage.setItem('token', response);
                        },
                        error => {
