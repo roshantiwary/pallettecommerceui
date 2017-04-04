@@ -2,6 +2,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import {AuthService} from '../auth.service'; 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+import { DataService } from '../data.service';
+import { GlobalService } from '../global.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -11,8 +15,7 @@ import { Observable } from 'rxjs/Rx';
 })
 export class LoginComponent implements OnInit {
  
-  constructor(private auth : AuthService, public router: Router) { }
-  public refreshtoken : string ;
+  constructor(private auth : AuthService, public router: Router, public cartdetails: GlobalService) { }
   close = new EventEmitter();
 
     onClickedExit() {
@@ -27,8 +30,8 @@ export class LoginComponent implements OnInit {
     let userLogin = this.auth.login(username , password)
                               .subscribe(
                        response => {
-                        this.refreshtoken = response.refresh_token.toString() ;
-                       localStorage.setItem('refresh-token-set',  this.refreshtoken);
+                       this.cartdetails.refreshtoken = response.refresh_token.toString() ;
+                       localStorage.setItem('refresh-token-set',  this.cartdetails.refreshtoken);
                         this.close.emit('event');
                        },
                        error => {

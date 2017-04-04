@@ -4,6 +4,7 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
 @Injectable()
 export class GlobalService {
   public closeCartModel ;
+  public refreshtoken: string ;
   item:any= [];
   constructor(public http: Http) {
 
@@ -80,7 +81,7 @@ export class GlobalService {
 
     getTotalCount(){
 	    var count:  number = 0;
-	   var retrievedObject =  JSON.parse(localStorage.getItem('items'));
+	   var retrievedObject =  JSON.parse(localStorage.getItem('items')) || [];
 	    for(let ii = 0 ; ii < retrievedObject.length; ii++) {
 	        var item = parseInt(retrievedObject[ii].quantity);
           console.log(item)
