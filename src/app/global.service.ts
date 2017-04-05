@@ -47,7 +47,7 @@ export class GlobalService {
        return this.http
                         .post(url, JSON.stringify({ productId: sku, orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
     }
-    private getHeaders(){
+    public getHeaders(){
             let headers = new Headers();
             let data = localStorage.getItem('token-set');
             headers.append('Authorization', 'Bearer ' + data);
