@@ -33,7 +33,7 @@
             <label>SUBTOTAL</label>
             ₹ {{cartTotal}}
     </div>
-    <button *ngIf="cartdetails.getTotalCount()  != 0" [routerLink]="['checkout/shipping']" >
+    <button [routerLink]="['checkout/shipping']" >
          
             Proceed to Checkout    
     </button>

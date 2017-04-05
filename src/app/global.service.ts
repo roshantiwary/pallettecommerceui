@@ -48,7 +48,7 @@ export class GlobalService {
        return this.http
                         .post(url, JSON.stringify({ productId: sku, orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
     }
-    private getHeaders(){
+    public getHeaders(){
             let headers = new Headers();
             let data = localStorage.getItem('token-set');
             headers.append('Authorization', 'Bearer ' + data);
@@ -96,7 +96,7 @@ export class GlobalService {
   // Get Order Summary for Checkout Pages
   getOrderSummary(orderID:string) {
      let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
-     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json);
+     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
     
     // openCart(){

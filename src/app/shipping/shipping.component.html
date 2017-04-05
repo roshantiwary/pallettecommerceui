@@ -1,3 +1,57 @@
-<p>
-  shipping works!
-</p>
+{{diagnostic}}
+<div class="container">
+  <div class="span8">
+  <div class="span6">
+    <h1>Shipping Address</h1>
+    <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="model.email" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
+      </div>
+       <div class="form-group">
+        <label for="email">firstName</label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="email">lastName</label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="address1">Apartment/Street</label>
+        <input type="text" class="form-control" id="address1" [(ngModel)]="model.address1" #address1="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="address2">Area</label>
+        <input type="text" class="form-control" id="address2" [(ngModel)]="model.address2" #address2="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" [(ngModel)]="model.city" #city="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" [(ngModel)]="model.state" #state="ngModel"  [ngModelOptions]="{standalone: true}"  required>
+      </div>
+       <div class="form-group">
+        <label for="postalCode">PostalCode</label>
+        <input type="text" class="form-control" id="postalCode" [(ngModel)]="model.postalCode" #postalCode="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">PhoneNumber</label>
+        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" [ngModelOptions]="{standalone: true}"   required>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!shipAddForm.form.valid">Submit</button>
+    </form>
+    </div>
+    <div class="span2">
+        <div *ngFor="let item of items">
+          Title: {{item.productTitle}} 
+          SKU Id: {{item.catalogRefId}}
+          quantity: {{item.quantity}}
+          Store: {{item.productBrand}}
+          Price: {{item.amount}}
+          Order Total {{orderTotal}}
+       </div>
+    </div>
+</div>
+</div>
