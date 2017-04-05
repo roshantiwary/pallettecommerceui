@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { DialogDirective } from './dialog.directive';
 import { AppfooterComponent } from './appfooter/appfooter.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ShippingComponent } from './shipping/shipping.component';
      CartComponent,
      AppfooterComponent,
      ShippingComponent,
+     AccountComponent,
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,

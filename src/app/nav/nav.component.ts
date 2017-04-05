@@ -19,9 +19,8 @@ export class NavComponent implements OnInit {
   public  openCart: any ;
   public overlay: any
   @ViewChild(DialogDirective) dialogAnchor: DialogDirective;
-  public refeshtoken: string
   constructor(public cartdetails: GlobalService, private render:Renderer) { 
-    this.refeshtoken = localStorage.getItem('refresh-token-set');
+    this.cartdetails.refreshtoken = localStorage.getItem('refresh-token-set');
     //this.cartdetails = globalService;
   }
 
@@ -42,7 +41,7 @@ export class NavComponent implements OnInit {
 
   
   signout(){
-        this.refeshtoken = '';
+        this.cartdetails.refreshtoken = '';
         localStorage.removeItem('refresh-token-set');
         localStorage.removeItem('token-set');
   }

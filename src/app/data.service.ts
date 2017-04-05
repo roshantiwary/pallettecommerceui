@@ -12,14 +12,10 @@ export class DataService {
   private clientSecret ='acmesecret';
   private grant_type = 'client_credentials';
   private data = '';
-
-
   constructor(public http: Http) { 
     this.browse();
   }
-
   // Oauth Check
-
   Oauth()  {
        let params: URLSearchParams = new URLSearchParams();
         params.set('client_id', this.clientId );
