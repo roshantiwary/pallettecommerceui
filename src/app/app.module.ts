@@ -17,6 +17,7 @@ import { DialogDirective } from './dialog.directive';
 import { AppfooterComponent } from './appfooter/appfooter.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { AccountComponent } from './account/account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AccountComponent } from './account/account.component';
      AppfooterComponent,
      ShippingComponent,
      AccountComponent,
+     ProfileComponent,
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,

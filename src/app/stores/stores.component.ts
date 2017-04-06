@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Rx';
 export class StoresComponent implements OnInit {
   stores: Object;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router:Router) { }
 
   ngOnInit() {
     this.getServiceData();
@@ -23,15 +23,22 @@ export class StoresComponent implements OnInit {
     // })
     this.dataService.browse()
         .subscribe(
-                       response => {
-                        console.log(response) ;
-                        this.stores = response.items;
-                        localStorage.setItem('token', response);
-                
-                       },
-                       error => {
-                        alert(error);
-                       }
-                     );
+                    response => {
+                    this.stores = response.items;
+                    localStorage.setItem('token', response);
+                    },
+                    error => {
+                      if(error.status == 401) {
+                        // Token has expired Get new token and save it in local storage
+                          this.dataService.Oauth()
+                          .subscribe(data => {
+                              this.dataService.browse()
+                          })
+                      } else if(error.status == 403) {
+                        // Need to get authorized token to access the service, redirect to login page
+                        this.router.navigate(['ShippingComponent']); 
+                      }
+                    }
+                  );
   }
 }

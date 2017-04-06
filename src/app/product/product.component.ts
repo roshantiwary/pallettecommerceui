@@ -70,6 +70,11 @@ export class ProductComponent implements OnInit {
                     //this.cartComponent.getCartItems() ;
                   },
                   error => {
+                    if(error.status === '401') {
+                      console.log("Get new token");
+                    } else if(error.status === '403') {
+                      console.log("You need to login to access the service");
+                    }
                      this.dataService.Oauth()
                         .subscribe(data => {
 

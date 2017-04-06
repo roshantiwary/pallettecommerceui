@@ -94,6 +94,12 @@ export class GlobalService {
 	}
 
   // Get Order Summary for Checkout Pages
+  getProfile() {
+     let url:string = "/boot/private/rest/api/v1/userprofile/user";
+     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
+
+  // Get Logged-In Profile for Account Pages
   getOrderSummary(orderID:string) {
      let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
