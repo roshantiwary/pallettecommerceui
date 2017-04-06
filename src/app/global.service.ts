@@ -111,11 +111,35 @@ export class GlobalService {
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
+  // Get Order Detail
   getOrderDetail(orderId:string) {
     let url:string = "/boot/private/rest/api/v1/userprofile/account/{orderId}/orderDetail";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
-    
+
+  // Get Addresses for a Profile
+  getProfileAddresses() {
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/addresses";
+    return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
+
+  // Edit Address of a Profile  
+  editAddress(address:any, addressKey:string){
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/editAddress/" + {addressKey};
+    return this.http.post(url, JSON.stringify(address,) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
+  
+  // Remove Address from a Profile  
+  removeAddress(addressKey:string){
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/removeAddress/" + {addressKey};
+    return this.http.post(url, {headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
+
+ // Address Address of a Profile  
+  addAddress(address:any){
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/addresses/";
+    return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
     // openCart(){
     //   this.closeCartModel = true ;
     //   //return this.cartModal ;
