@@ -93,16 +93,27 @@ export class GlobalService {
 	    return count;
 	}
 
-  // Get Order Summary for Checkout Pages
+  // Get Logged-In Profile for Account Pages
   getProfile() {
      let url:string = "/boot/private/rest/api/v1/userprofile/user";
      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
-  // Get Logged-In Profile for Account Pages
+  // Get Order Summary for Checkout Pages
   getOrderSummary(orderID:string) {
      let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
+
+  // Get Order History for a Profile
+  getOrderHistory() {
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/orders";
+    return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
+
+  getOrderDetail(orderId:string) {
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/{orderId}/orderDetail";
+    return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
     
     // openCart(){

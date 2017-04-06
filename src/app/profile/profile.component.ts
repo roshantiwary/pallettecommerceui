@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
                       } else if(error.status == 403) {
                         console.log("Need to get authorized token to access the service, redirect to login page");
                       // Need to get authorized token to access the service, redirect to login page
-                      this.router.navigate(['/checkout/shipping']); 
+                        this.router.navigate(['/account/login']); 
                       }                   
                     }
                   );

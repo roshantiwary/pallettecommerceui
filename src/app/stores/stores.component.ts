@@ -25,7 +25,6 @@ export class StoresComponent implements OnInit {
         .subscribe(
                     response => {
                     this.stores = response.items;
-                    localStorage.setItem('token', response);
                     },
                     error => {
                       if(error.status == 401) {
@@ -36,7 +35,7 @@ export class StoresComponent implements OnInit {
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/checkout/shipping']);
+                        this.router.navigate(['/checkout/login']);
                       }
                     }
                   );

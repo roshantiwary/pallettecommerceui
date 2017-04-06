@@ -18,6 +18,9 @@ import { AppfooterComponent } from './appfooter/appfooter.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { AccountComponent } from './account/account.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddressbookComponent } from './addressbook/addressbook.component';
+import { OrderdetailComponent } from './orderdetail/orderdetail.component';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { ProfileComponent } from './profile/profile.component';
      ShippingComponent,
      AccountComponent,
      ProfileComponent,
+     AddressbookComponent,
+     OrderdetailComponent,
+     OrderhistoryComponent
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,
