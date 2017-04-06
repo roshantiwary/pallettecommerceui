@@ -1,6 +1,56 @@
-<p *ngIf="profile">
-  Welcome {{profile.firstName}} {{profile.lastName}}!!
-  {{profile.email}}
-  {{profile.phonenumber}}
-  {{profile.address}}
-</p>
+<div class="container" *ngIf="profile">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Your Profile</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">Personal Details</a>
+                    <a href="#" class="list-group-item">Address Book</a>
+                    <a href="#" class="list-group-item">Order History</a>
+                    <a href="#" class="list-group-item">Log Out</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                  <div class="col-md-9 col-sm-12 col-xs-12">
+                    <p class="lead">PERSONAL INFO</p>
+                    <div id="personal-info">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-4">
+                              <label>FIRST NAME</label>
+                              <p>
+                                {{profile.firstName}}
+                              </p>
+                          </div>
+                          <div class="col-xs-12 col-sm-4">
+                              <label>LAST NAME</label>
+                              <p>
+                                {{profile.lastName}}
+                              </p>
+                          </div>
+                          <div class="col-xs-12 col-sm-4">
+                              <label>EMAIL</label>
+                              <p><span>
+                                {{profile.email}}</span>
+                              </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-4">
+                              <label>PHONE NUMBER</label>
+                              <p class="text-capitalize">
+                                {{profile.phonenumber}}
+                              </p>
+                          </div>
+                          <div class="col-xs-12 col-sm-4">
+                              <label>GENDER</label>
+                              <p>
+                                --
+                              </p>
+                          </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</div>
