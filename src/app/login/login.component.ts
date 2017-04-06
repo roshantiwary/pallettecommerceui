@@ -11,7 +11,7 @@ import { GlobalService } from '../global.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, GlobalService]
 })
 export class LoginComponent implements OnInit {
 
