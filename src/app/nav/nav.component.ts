@@ -15,7 +15,7 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
 export class NavComponent implements OnInit {
   
 
-
+  public username  = "dads";
   public  openCart: any ;
   public overlay: any;
   @ViewChild(DialogDirective) dialogAnchor: DialogDirective;

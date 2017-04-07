@@ -1,6 +1,6 @@
 <!-- Nav Menu -->
 <!--Top Bar-->
-<div class="sw-top-bar-inner-container sw-top-bar container-fluid">
+<div class="sw-top-bar-inner-container sw-top-bar container-fluid" [(ngModel)]="cartdetails.firstName" ngDefaultControl >
     <span class="sw-top-bar-left">
         <a href="#" class="sw-top-bar-text sw-common-padding">
             About us
@@ -16,7 +16,7 @@
 					<ul class="nav navbar-nav">
 					
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Vagish
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">{{cartdetails.firstName}}
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 						<li><a [routerLink]="['account/profile']">Account</a></li>
