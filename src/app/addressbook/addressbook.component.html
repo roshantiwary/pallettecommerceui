@@ -13,10 +13,33 @@
             </div>
 
             <div class="col-md-9">
-                <p>
-                  addressbook works!
-                  {{addresses}}
-                </p>
+                <div class="col-md-9 col-sm-12 col-xs-12 account-content">
+                    <h1>ADDRESS BOOK</h1>
+    
+                    <!-- No Saved Address -->
+                    <div ng-if="isEmpty(addresses)" class="address-edit-container row">
+                        You don't have any stored addresses.
+                    </div>
+
+                    <!-- Saved Address -->
+                    <div ng-else class="address-edit-container row">
+                        <div class="col-xs-12 address">
+                        <div class="address-details col-xs-12 col-sm-10">
+                        <div class="addressee">
+                            Roshan Kumar
+                        </div>
+                        <div class="address-details">
+                            7811 W Jefferson Blvd,&nbsp;<br>Fort Wayne,&nbsp;IN&nbsp;46804<br> <p class="phone-number-mask-output phone-number-masked">(646) 272-8114</p>
+                        </div>
+                        </div>
+                        <div class="address-edit-controls col-xs-12 col-sm-2">
+                        <a role="menuitem" href="" aria-label="Edit Roshan Kumar 7811 W Jefferson Blvd  Fort Wayne, IN 46804">Edit</a></div>
+                        </div>
+                    </div>
+
+                    <div class="address-add col-xs-12 col-sm-5 col-md-4">
+                    <a role="menuitem" class="button-secondary add-new-address">ADD NEW ADDRESS</a></div>
+                </div>
             </div>
         </div>
 </div>

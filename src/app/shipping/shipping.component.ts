@@ -67,7 +67,7 @@ export class ShippingComponent implements OnInit {
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/checkout/login']);
+                        this.router.navigate(['/']);
                       }
                        }
                      );

@@ -38,7 +38,7 @@ getOrders(){
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/account/login']);
+                        this.router.navigate(['/']);
                       }
                        }
                      );
