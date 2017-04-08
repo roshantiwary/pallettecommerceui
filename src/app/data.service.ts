@@ -39,6 +39,9 @@ export class DataService {
  // }
   // GET THE STORES
    browse(): Observable<any> {
+        if(localStorage.getItem('token-set') == null) {
+          this.Oauth();
+        }
               let data = localStorage.getItem('token-set');
               let headers2: Headers = new Headers();
                headers2.append('Content-Type', 'application/json');
@@ -50,10 +53,7 @@ export class DataService {
                 
               });
             
- 
-             return  this.Oauth().flatMap(data => {
-                   return  this.http.get('/boot/rest/api/v1/brands', options ).map((res: Response) => res.json())
-                });   
+            return  this.http.get('/boot/rest/api/v1/brands', options ).map((res: Response) => res.json())
               
   }
   // GET THE PRODUCTS
