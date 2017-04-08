@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router' ;
 import { DataService } from '../data.service';
 import { GlobalService } from '../global.service';
-
+import { Router } from '@angular/router';
 import {CartComponent} from '../cart/cart.component'
 import {Data} from '../data';
 @Component({
@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
 
  public cartResult: any
 
-  constructor(private route: ActivatedRoute, private dataService: DataService, private globalService : GlobalService ) {
+  constructor(private route: ActivatedRoute, private dataService: DataService, private globalService : GlobalService, private router:Router) {
     //this.factoryObj  = globalService.getFactory()  ;
     this.orderID = localStorage.getItem('orderId');
   }
@@ -46,6 +46,22 @@ export class ProductComponent implements OnInit {
           
                   },
                   error => {
+                     if(error.status == 401) {
+                        //Remove Token if exists
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
+                        // Token has expired Get new token and save it in local storage
+                          this.dataService.Oauth()
+                          .subscribe(data => {
+                              this.globalService.getOrderHistory();
+                          })
+                      } else if(error.status == 403) {
+                          //Remove Token if exists
+                          localStorage.removeItem('refresh-token-set');
+                          localStorage.removeItem('token-set');
+                        // Need to get authorized token to access the service, redirect to login page
+                        this.router.navigate(['/']);
+                      }
                     this.dataService.Oauth()
                         .subscribe(data => {
 
@@ -70,6 +86,9 @@ export class ProductComponent implements OnInit {
                     //this.cartComponent.getCartItems() ;
                   },
                   error => {
+                    //Remove Token if exists
+                    localStorage.removeItem('refresh-token-set');
+                    localStorage.removeItem('token-set');
                     if(error.status === '401') {
                       console.log("Get new token");
                     } else if(error.status === '403') {

@@ -26,6 +26,9 @@ export class ProfileComponent implements OnInit {
                     },
                     error => {
                       if(error.status == 401) {
+                        //Remove Token if exists
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
                         console.log("Token has expired Get new token and save it in local storage");
                     // Token has expired Get new token and save it in local storage
                         this.dataService.Oauth()
@@ -33,6 +36,9 @@ export class ProfileComponent implements OnInit {
                             this.globalService.getProfile();
                         })
                       } else if(error.status == 403) {
+                        //Remove Token if exists
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
                         console.log("Need to get authorized token to access the service, redirect to login page");
                       // Need to get authorized token to access the service, redirect to login page
                         this.router.navigate(['/']); 
