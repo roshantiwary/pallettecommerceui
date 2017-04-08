@@ -104,3 +104,13 @@ nav .cart-button span {
     -webkit-transition: all .1s cubic-bezier(.15,.69,.83,.67);
     transition: all .1s cubic-bezier(.15,.69,.83,.67);
 }
+a.dropdown-toggle {
+    font-size: 16px;
+    padding: 0 10px 0 0 !important;
+    color: #e85826;
+}
+a.dropdown-toggle:hover,  a.dropdown-toggle:focus, a.dropdown-toggle:hover{
+    background: transparent !important;
+}
+
+

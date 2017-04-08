@@ -44,7 +44,7 @@
 	        			<span class="icon-bar"></span>
 	      		</button>
 	      		<a href="#"><img class="pull-left logo" src="/src/images/download.png"></a>
-				<div class="cart-button cart-menu-toggle GTM_open_cart_button" (click)= "displayCartFuntion()">
+				<div class="cart-button cart-menu-toggle GTM_open_cart_button" (click)= "displayCartFuntion()" [hidden]="cartdetails.showcart">
 					
                 	<span >
 						{{cartdetails.loadItemLocalStorage()}}
@@ -57,7 +57,7 @@
 	</nav>
 </div>
 
-<div appDialog>
+<div appDialog class="form-login">
 	
 </div>
 

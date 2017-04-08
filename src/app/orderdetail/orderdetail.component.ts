@@ -41,7 +41,8 @@ getOrder(orderId) {
                         localStorage.removeItem('refresh-token-set');
                         localStorage.removeItem('token-set');
                         // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/']);
+                        this.router.navigate(['']);
+
                       }
                        }
                      );

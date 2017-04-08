@@ -6,19 +6,24 @@
             close
         </div>
     </div>
-    <article *ngFor="let item of cartdetails.getCart()" class="row cartitem" id={{item.productId}}> 
+    <article *ngFor="let item of cartdetails.getCart(); let i = index" class="row cartitem" > 
+    <div  id={{item.productId}}>
       <div class="col-md-4"><img src="/src/images/products/image1.jpg"></div>
       <div class="col-md-8">
-        <div class="close" (click) = "removeProduct(item.productId)">×</div>
+        <div class="close" (click) = "removeProduct(item.catalogRefId, item.productId)">×</div>
         <h4>{{item.productTitle}}</h4>
+        
         <div class="cart-details">
-            <select (change)="AddItemtoCart(item.productId, $event.target.value)">
-               <option *ngFor="let cartQuantity of cartnumber"   [selected]= "cartQuantity == item.quantity">{{cartQuantity}}</option>  
-            </select>
+             <select (change)="onRepositorySelected()">
+                <option value="">-- please choose an option --</option>
+                <option *ngFor="let option of options" >{{ option.name }}</option>
+            </select> 
+            
             ₹ {{item.amount}}
         </div>
         
       </div>
+    </div>
     </article>
 
     <div *ngIf="cartdetails.getTotalCount() == 0" class="sw-empty-cart">
@@ -28,8 +33,8 @@
         </div>
         <a href="index.html" class="buttom-animate">Continue Shopping</a>
     </div> 
-
-    <div class="total"  *ngIf="cartdetails.getTotalCount()  != 0" >
+    <div *ngIf="cartdetails.getTotalCount()  != 0">
+    <div class="total"   >
             <label>SUBTOTAL</label>
             ₹ {{cartTotal}}
     </div>
@@ -37,6 +42,7 @@
          
             Proceed to Checkout    
     </button>
+    </div>
 
 </section>
 
