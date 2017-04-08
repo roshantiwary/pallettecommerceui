@@ -1,6 +1,7 @@
 export class Address {
   constructor(
   ) {  }
+    id : String;
     firstName : String;
     lastName : String;
     address1 : String;
