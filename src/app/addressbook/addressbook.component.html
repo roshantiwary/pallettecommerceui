@@ -41,8 +41,72 @@
                     </div>
 
                     <div class="address-add col-xs-12 col-sm-5 col-md-4">
-                    <a role="menuitem" class="button-secondary add-new-address">ADD NEW ADDRESS</a></div>
+                     <a role="menuitem" [hidden]="hideAddressButton" (click)= "showAddressForm()" class="button-secondary add-new-address">ADD NEW ADDRESS</a>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div ng-show="myVar" [hidden]="hideAddressForm">
+            <div class="row" id="add_new_address">
+                <h2>ADD NEW ADDRESS</h2>
+                <div>All fields are required unless marked optional.</div>
+                <form (ngSubmit)="addAddress()" #addAddressForm="ngForm">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <label for="first-name">FIRST NAME</label>
+                            <input name="first-name" [(ngModel)]="model.firstName" id="first-name" placeholder="First Name" type="text" value="" aria-required="true">
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <label for="last-name">LAST NAME</label>
+                            <input name="last-name" [(ngModel)]="model.lastName" id="last-name" placeholder="Last Name" type="text" value="" aria-required="true">
+                        </div>
+                        <div class="input-wrap has-fancy-labels is-required is-empty col-xs-12 col-md-8 clearfix">
+                            <label for="address">ADDRESS BOOK</label>
+                            <input name="address" [(ngModel)]="model.address1" id="address" placeholder="Address" type="text" value="" aria-required="true">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-5">
+                            <label for="bldg">APT / BUILDING (Optional)</label>
+                            <input name="bldg" id="bldg" [(ngModel)]="model.address2" placeholder="APT / BUILDING (Optional)" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <label for="city">CITY</label>
+                            <input name="city" id="city" [(ngModel)]="model.city" placeholder="CITY" type="text" value="" aria-required="true">
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-2">
+                            <label for="state" id="state-label">STATE</label>
+                            <input name="state" id="state" [(ngModel)]="model.state"  placeholder="STATE" type="text" value="" aria-required="true">
+                            </div>
+                            <div class="col-xs-6 col-sm-3 col-md-2">
+                            <label for="zip-code">ZIP CODE</label>
+                            <input name="zip-code" id="zip-code" [(ngModel)]="model.postalCode"  placeholder="Zip Code" type="text" value="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-5">
+                            <label for="country">Country</label>
+                            <input name="country" id="country" [(ngModel)]="model.country" placeholder="COUNTRY" type="text" value="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <label for="phone">PHONE</label>
+                            <input maxlength="15" name="phone" id="phone" [(ngModel)]="model.phoneNumber" placeholder="Phone" type="text" class="phone-number-mask" value="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="address-add col-xs-12 col-sm-5 col-md-4">
+                                <a role="menuitem" (click)= "addAddress()" class="button-secondary add-new-address">ADD ADDRESS</a>
+                            </div>
+                            <div class="address-add col-xs-12 col-sm-5 col-md-4">
+                                <a role="menuitem" (click)= "closeAddressForm()" class="button-secondary add-new-address">CANCEL</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { Address } from './address.component';
 
 @Component({
   selector: 'app-addressbook',
@@ -15,6 +16,12 @@ constructor(private dataService: DataService, private globalService: GlobalServi
 
 addresses : any;
 address : any;
+hideAddressForm:boolean = true ;
+hideAddressButton:boolean = false;
+submitted:boolean = false;
+
+model = new Address();
+
 addressKey : string;
   ngOnInit() {
     this.getAddresses();
@@ -63,19 +70,22 @@ addressKey : string;
                      );
   }
 
-  addAddress(address) {
-    this.globalService.addAddress(address)
+  addAddress() {
+    this.submitted = true;
+    this.globalService.addAddress(this.model)
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
                         this.address = response.adressResponse;
+                        this.hideAddressForm = true ;
+                        this.hideAddressButton = false;
                        },
                        error => {
                            if(error.status == 401) {
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
-                             this.address = this.globalService.addAddress(address);
+                             this.address = this.globalService.addAddress(this.model);
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
@@ -111,5 +121,15 @@ removeAddress(addresKey) {
                       }
                        }
                      );
+  }
+
+  showAddressForm(){
+    this.hideAddressForm = false ;
+    this.hideAddressButton = true;
+  }
+
+  closeAddressForm(){
+     this.hideAddressForm = true ;
+    this.hideAddressButton = false;
   }
 }
