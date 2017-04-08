@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-4" *ngFor="let product of products" id="{{product.id}}">
+<div class="col-xs-12 col-md-4" *ngFor="let product of products  " id="{{product.id}}">
   <article  class="list" >
     <div class="info">
        <img src="/src/images/products/image1.jpg">
@@ -6,7 +6,11 @@
           <h4>{{product.productTitle}}</h4>
           <div class="description">{{product.productDescription}}</div>
         </div>
-        <button (click)="addTocart(product.id , 1)" class="addcart">Add To Cart</button>
+
+        <select #s  >
+            <option *ngFor="let size of product.skuResponse"   value = {{size.id}}>{{size.unitOfMeasure}}</option>  
+        </select>
+       <button (click)="addTocart(product.id , 1 , s.value)" class="addcart">Add To Cart</button>
       </div>
   </article>
 </div>

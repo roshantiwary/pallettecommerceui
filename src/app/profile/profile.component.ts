@@ -21,8 +21,8 @@ export class ProfileComponent implements OnInit {
     this.globalService.getProfile()
         .subscribe(
                     response => {
-                    this.profile = response;
-                    console.log(response);
+                      this.profile = response;
+                      console.log(response);
                     },
                     error => {
                       if(error.status == 401) {
@@ -38,6 +38,6 @@ export class ProfileComponent implements OnInit {
                         this.router.navigate(['/account/login']); 
                       }                   
                     }
-                  );
+          );
   }
 }

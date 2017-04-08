@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
   ngAfterViewInit(){
    this.openCart =  document.getElementById('cart');
 
-  this.overlay = document.getElementById('overlay');
+   this.overlay = document.getElementById('overlay');
   }
 
   signin(){
@@ -41,7 +41,7 @@ export class NavComponent implements OnInit {
 
   
   signout(){
-        this.cartdetails.refreshtoken = '';
+       // this.cartdetails.:wq = '';
         localStorage.removeItem('refresh-token-set');
         localStorage.removeItem('token-set');
   }

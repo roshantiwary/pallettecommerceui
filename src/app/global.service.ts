@@ -6,6 +6,7 @@ export class GlobalService {
   public closeCartModel ;
   public refreshtoken: string ;
   item:any= [];
+  showcart:boolean = false ;
   constructor(public http: Http) {
 
     this.getLocalStorage();
@@ -20,7 +21,7 @@ export class GlobalService {
 		//
 		return ItemTotal; 
 	}
-  addtoCart(sku:string, qty:number, orderID:string ){
+  addtoCart(selectsize:string, qty:number, orderID:string, sku:string ){
             let url:string;
             if(qty>1){
                url = "/boot/rest/api/v1/cart/update/";
@@ -39,14 +40,14 @@ export class GlobalService {
             } 
             //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
              return this.http
-                        .post(url, JSON.stringify({ productId: sku, quantity: qty  , orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
+                        .post(url, JSON.stringify({ productId: selectsize, quantity: qty  , orderId:  orderID , profileId : '123', skuId: sku},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
 		
 	    }
-    removeProduct(sku:string, orderID:string){
+    removeProduct(sku:string, itemID, orderID:string){
        let url:string =  "/boot/rest/api/v1/cart/remove/";
 
        return this.http
-                        .post(url, JSON.stringify({ productId: sku, orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
+                        .post(url, JSON.stringify({ skuId: sku, productId: itemID, orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
     }
     public getHeaders(){
             let headers = new Headers();

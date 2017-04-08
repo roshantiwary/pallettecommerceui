@@ -17,6 +17,8 @@ export class ProductComponent implements OnInit {
  products:Object ;
  factoryObj: any ;
  orderID:string ;
+ selectsize :string = '';
+
 
  
 
@@ -55,8 +57,8 @@ export class ProductComponent implements OnInit {
                 );
       }
 
-      addTocart(sku:string, quantity: number){
-        this.globalService.addtoCart(sku, quantity , this.orderID)
+      addTocart(sku:string, quantity: number, selectsize:string){
+        this.globalService.addtoCart(sku, quantity , this.orderID, selectsize)
          .subscribe(
                   response => {
                     console.log(response) ;

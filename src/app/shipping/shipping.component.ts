@@ -15,7 +15,21 @@ export class ShippingComponent implements OnInit {
   items: any;
   orderTotal: any;
   orderID:string ;
-  constructor(private dataService: DataService, private globalService: GlobalService, public http: Http, private router:Router) { }
+  public removeCart  :any ;
+  public removeoverlay :any ;
+   ngAfterViewInit(){
+
+   
+  }
+  constructor(private dataService: DataService, private globalService: GlobalService, public http: Http, private router:Router) {
+    document.getElementById('cart').classList.remove("open");
+    document.getElementById('overlay').classList.remove("active");
+     document.getElementsByClassName('cart-button')[0].classList.add("hide");
+
+    
+    this.globalService.showcart = true ;
+    console.log( this.globalService.showcart)
+  }
 
   ngOnInit() {  
     this.getServiceData();

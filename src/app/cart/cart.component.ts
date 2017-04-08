@@ -14,9 +14,10 @@ export class CartComponent implements OnInit {
   public removeCart  :any ;
   public removeoverlay :any
   cartTotal: string;
-  cartnumber: Array<number> = [1,2,3,4,5,6,7,8,9];
+  options = [{id: 1, name:1}, {id: 2, name:2}, {id: 3, name:3}, {id: 4, name:4}, {id: 5, name:5}, {id: 6, name:6}, {id: 7, name:7}, {id: 8, name:8}]
   orderID:string ;
   cartdetails: any ;
+  selected : any
   constructor(globalService: GlobalService) {
       this.cartdetails = globalService;
       this.cartTotal = localStorage.getItem('cartTotal') ;
@@ -27,11 +28,14 @@ export class CartComponent implements OnInit {
    this.removeoverlay = document.getElementById('overlay');
    
   }
-  AddItemtoCart(sku, qty){
-       this.orderID = JSON.parse(localStorage.getItem('orderId'));
-       this.cartTotal = JSON.parse(localStorage.getItem('cartTotal'));
-      
-      this.cartdetails.addtoCart(sku, qty , this.orderID)
+  onRepositorySelected(){
+    alert('fsd')
+  }
+  onChange(sku, qty,productId){
+       this.orderID = localStorage.getItem('orderId');
+       this.cartTotal = localStorage.getItem('cartTotal');
+      this.selected = qty ;
+      this.cartdetails.addtoCart(sku, qty , this.orderID, productId )
           .subscribe(
             response => {
                console.log(response) ;
@@ -41,9 +45,9 @@ export class CartComponent implements OnInit {
             }
           )
   }
-  removeProduct(itemID){
-       this.orderID = localStorage.getItem('orderId');
-      this.cartdetails.removeProduct(itemID, this.orderID)
+  removeProduct(sku, itemID){
+      this.orderID = localStorage.getItem('orderId');
+      this.cartdetails.removeProduct(sku, itemID, this.orderID)
           .subscribe(
             response =>{
               var retrievedObject = localStorage.getItem('items'),
