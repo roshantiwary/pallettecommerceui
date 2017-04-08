@@ -5,18 +5,156 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a [routerLink]="['account/profile']" class="list-group-item active">Personal Details</a>
-                    <a [routerLink]="['account/addressbook']" class="list-group-item">Address Book</a>
-                    <a [routerLink]="['account/orderhistory']" class="list-group-item">Order History</a>
-                    <a [routerLink]="['account/profile']" class="list-group-item">Log Out</a>
+                    <a [routerLink]="['/account/profile']" class="list-group-item active">Personal Details</a>
+                    <a [routerLink]="['/account/addressbook']" class="list-group-item">Address Book</a>
+                    <a [routerLink]="['/account/orderhistory']" class="list-group-item">Order History</a>
+                    <a [routerLink]="['/account/profile']" class="list-group-item">Log Out</a>
                 </div>
             </div>
 
             <div class="col-md-9">
-                 <p>
-                    orderdetail works!
-                    {{order}}
-                  </p>
+                    roshan{{order.orderId}}tiwari
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="col-xs-11">
+                            <h1>
+                                ORDER DETAIL
+                            </h1>
+                        </div>
+                        <div class="col-xs-1">
+                            <a title="print this page" href="javascript:window.print();"> Print</a>
+                        </div>
+                        <div class="col-xs-12">
+                            <a role="menuitem" href="#" title="Back to order history">Back to Order History</a>
+                        </div>
+                        <div class="row">
+                            <ul class="col-xs-12 col-sm-8">
+                                <li><span>Order Number: </span>VBUS6560038</li>
+                                <li><span>Date Placed: </span>
+                                    03/06/2017
+                                </li>
+                                <li><span>Status: </span>
+                                    <span>Shipped</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <h2>
+                                    SHIPPING
+                                </h2>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="col-label">Ship To</div>
+                                    <span>
+                                    Roshan&nbsp;Kumar<br>9595 Shore Ave.<br>
+                                    CHELMSFORD,
+                                    MA&nbsp;01824<br>
+                                    <p>(804) 104-7000</p>
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="col-label">
+                                    METHOD
+                                    </div>
+                                    <span>&nbsp;$0.00</span>
+                                </div>
+                                 <div class="col-xs-12 col-md-4">
+                                    <h2>
+                                        ORDER SUMMARY
+                                    </h2>
+                                    <div class="col-xs-8">
+                                        <span>Total</span>
+                                    </div>
+                                    <div class="col-xs-4 right">
+                                        <span>$1,056.12</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h2>
+                                    ITEMS SHIPPED
+                                </h2>
+                                <div class="col-labels hidden-xs">
+                                    <div class="col-xs-12 col-sm-5">
+                                    <div class="col-label">
+                                        ITEMS
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                    <div class="col-label">
+                                        QUANTITY
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    <div class="col-label right">
+                                        PRICE
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    <div class="col-label right">
+                                        TOTAL
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-5">
+                                    <img class="col-xs-12 col-sm-4" src="">
+                                    <div class="item-group col-xs-12 col-sm-8">
+                                        <span>Throw Blanket</span> <span>Kiev Paisley</span> <span>
+                                        SKU	#12408646</span><span>
+                                        Tracking Number: <a href="http://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&amp;tracknum=1Z439004YW02186593" title="completeShipmentURL">1Z439004YW02186593</a>
+                                        </span>
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                    <div class="col-label visible-xs">
+                                        QUANTITY
+                                    </div>
+                                    <div class=" quantity">12</div>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-2">
+                                    <div class="col-label right visible-xs">
+                                        PRICE
+                                    </div>
+                                    <div class=" price">$49.00</div>
+                                    </div>
+                                    <div class="total col-xs-2 col-md-2">
+                                    <div class="col-label right visible-xs">
+                                        TOTAL
+                                    </div>
+                                    <div class=" price">$588.00</div>
+                                    </div>
+                                </div>
+                                <div class="order-row">
+                                    <div class="col-xs-12 col-sm-5">
+                                    <img class="col-xs-12 col-sm-4" src="//verabradley.scene7.com/is/image/VeraBradley/15717669">
+                                    <div class="item-group col-xs-12 col-sm-8">
+                                        <span>Stroll Around Baby Bag</span>
+                                        <span>Lilac Tapestry</span>
+                                        <span>SKU	#15717669</span>
+                                    </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
+                                    <div class="col-label visible-xs">
+                                        QUANTITY
+                                    </div>
+                                    <div class=" quantity">7</div>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-2">
+                                    <div class="col-label right visible-xs">
+                                        PRICE
+                                    </div>
+                                    <div class=" price">$128.00</div>
+                                    </div>
+                                    <div class="total col-xs-2 col-md-2">
+                                    <div class="col-label right visible-xs">
+                                        TOTAL
+                                    </div>
+                                    <div class=" price">$896.00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
 </div>

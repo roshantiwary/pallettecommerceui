@@ -5,18 +5,89 @@
             <div class="col-md-3">
                 <p class="lead">Your Profile</p>
                 <div class="list-group">
-                    <a [routerLink]="['account/profile']" class="list-group-item">Personal Details</a>
-                    <a [routerLink]="['account/addressbook']" class="list-group-item">Address Book</a>
-                    <a [routerLink]="['account/orderhistory']" class="list-group-item active">Order History</a>
-                    <a [routerLink]="['account/profile']" class="list-group-item">Log Out</a>
+                    <a [routerLink]="['/account/profile']" class="list-group-item">Personal Details</a>
+                    <a [routerLink]="['/account/addressbook']" class="list-group-item">Address Book</a>
+                    <a [routerLink]="['/account/orderhistory']" class="list-group-item active">Order History</a>
+                    <a [routerLink]="['/account/profile']" class="list-group-item">Log Out</a>
                 </div>
             </div>
 
             <div class="col-md-9">
                 <p>
-                    orderhistory works!
                     {{orders}}
                 </p>
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <h1>
+                            ORDER HISTORY
+                        </h1>
+                        <div class="row">
+                            <div class="col-labels hidden-xs hidden-sm">
+                                <div class="col-md-3">
+                                    <div class="col-label">
+                                    Date Placed: 
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-label">
+                                    ORDER NUMBER
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="col-label">
+                                    QTY
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-label">
+                                    STATUS
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="col-label">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="order-row">
+                                <div class="order-col col-xs-6 col-md-3">
+                                    <div class="col-label visible-xs visible-sm">
+                                    Date Placed: 
+                                    </div>
+                                    <div class="values">
+                                    <div>
+                                        03/14/2017
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="order-col col-xs-6 col-md-3">
+                                    <div class="col-label visible-xs visible-sm">
+                                    ORDER NUMBER
+                                    </div>
+                                    <div class="values">
+                                    VBUS6630103
+                                    </div>
+                                </div>
+                                <div class="order-col col-xs-6 col-md-1">
+                                    <div class="col-label visible-xs visible-sm">
+                                    QTY
+                                    </div>
+                                    <div class="values">
+                                    2
+                                    </div>
+                                </div>
+                                <div class="order-col col-xs-6 col-md-3">
+                                    <div class="col-label visible-xs visible-sm">
+                                    STATUS
+                                    </div>
+                                    <div class="values">
+                                    Partially fulfilled
+                                    </div>
+                                </div>
+                                <div class="order-col col-xs-12 col-md-2">
+                                    <a role="menuitem" href="#" title="view order details" 
+                                    aria-label="View details for order VBUS6630103 placed on 03/14/2017">View details</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
             </div>
         </div>
 </div>

@@ -24,7 +24,6 @@ addressKey : string;
     this.globalService.getProfileAddresses()
         .subscribe(
                        response => {
-                        console.log(JSON.stringify(response)) ;
                         this.addresses = response.adressResponse;
                        },
                        error => {
