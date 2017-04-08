@@ -11,7 +11,7 @@
       <div class="modal-body">
        <div>
 		<div class="wrapper">
-			<form  action="" method="post" name="Login_Form" class="form-signin" (submit)="login($event, username.value, password.value)">       
+			<form  action="" method="post" name="Login_Form" class="form-signin" (submit)="login($event, username.value, password.value)" [ngModel]="cartdetails.firstName" >       
 			    <h3 class="form-signin-heading">Welcome !</h3>
 				  <hr class="colorgraph"><br>
 				  <input type="text" class="form-control"   name="Username"  placeholder="Username" #username />

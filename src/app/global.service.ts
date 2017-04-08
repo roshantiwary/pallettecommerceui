@@ -5,6 +5,7 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
 export class GlobalService {
   public closeCartModel ;
   public refreshtoken: string ;
+  public firstName: string;
   item:any= [];
   showcart:boolean = false ;
   constructor(public http: Http) {
@@ -140,6 +141,24 @@ export class GlobalService {
   addAddress(address:any){
     let url:string = "/boot/private/rest/api/v1/userprofile/account/addresses/";
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
+
+    getLoggedInProfile(){
+      this.getProfile()
+        .subscribe(
+                    response => {
+                     this.firstName = response.firstName;
+                    },
+                    error => {
+                      if(error.status == 401) {
+                        console.log("Token has expired Get new token and save it in local storage");
+                    // Token has expired Get new token and save it in local storage
+                      } else if(error.status == 403) {
+                        console.log("Need to get authorized token to access the service, redirect to login page");
+                      // Need to get authorized token to access the service, redirect to login page
+                      }                   
+                    }
+                  );
   }
     // openCart(){
     //   this.closeCartModel = true ;

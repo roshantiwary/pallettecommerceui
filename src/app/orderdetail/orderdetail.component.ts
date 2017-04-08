@@ -28,15 +28,21 @@ getOrder(orderId) {
                         this.order = response;
                        },
                        error => {
-                           if(error.status == 401) {
+                        //Remove Token if exists
+                      if(error.status == 401) {
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
                               this.globalService.getOrderDetail(orderId);
                           })
                       } else if(error.status == 403) {
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
                         // Need to get authorized token to access the service, redirect to login page
                         this.router.navigate(['']);
+
                       }
                        }
                      );

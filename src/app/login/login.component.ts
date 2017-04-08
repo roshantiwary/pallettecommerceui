@@ -14,7 +14,13 @@ import { GlobalService } from '../global.service';
   providers: [AuthService, GlobalService]
 })
 export class LoginComponent implements OnInit {
+<<<<<<< HEAD
  
+=======
+
+ public firstName: string;
+
+>>>>>>> 0bb78549aa6453db618fbd19c92be784c996dbbc
   constructor(private auth : AuthService, public router: Router, public cartdetails: GlobalService) { 
 
     this.cartdetails.refreshtoken = JSON.stringify(localStorage.getItem('refresh-token-set'));
@@ -34,9 +40,9 @@ export class LoginComponent implements OnInit {
     let userLogin = this.auth.login(username , password)
                               .subscribe(
                        response => {
-                        this.cartdetails.refreshtoken = response.refresh_token.toString() ;
                         localStorage.setItem('token-set', response.access_token);
-                        localStorage.setItem('refresh-token-set',  this.cartdetails.refreshtoken);
+                        localStorage.setItem('refresh-token-set',  response.refreshtoken);
+                        this.cartdetails.getLoggedInProfile();
                         this.close.emit('event');
                        },
                        error => {
