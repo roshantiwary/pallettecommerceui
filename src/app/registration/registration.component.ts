@@ -1,25 +1,19 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import {AuthService} from '../auth.service'; 
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { DataService } from '../data.service';
 import { GlobalService } from '../global.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css'],
   providers: [AuthService, GlobalService]
 })
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
- public firstName: string;
+  constructor() {
 
-  constructor(private auth : AuthService, public router: Router, public cartdetails: GlobalService) { 
-
-    this.cartdetails.refreshtoken = JSON.stringify(localStorage.getItem('refresh-token-set'));
-                       
   }
+
   close = new EventEmitter();
 
   onClickedExit() {
@@ -29,8 +23,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(event, username, password){
+  registration(event, username, password, confirmpassword, firstname, lastname){
     event.preventDefault();
+    console.log(username + password + confirmpassword + firstname + lastname);
+    /*
     let userLogin = this.auth.login(username , password)
                               .subscribe(
                        response => {
@@ -43,8 +39,7 @@ export class LoginComponent implements OnInit {
                         alert(error);
                        }
                      );
-
+    */
     }
-  
 
 }

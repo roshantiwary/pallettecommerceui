@@ -22,6 +22,7 @@ import { AddressbookComponent } from './addressbook/addressbook.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
      AddressbookComponent,
      OrderdetailComponent,
      OrderhistoryComponent,
-     ConfirmationComponent
+     ConfirmationComponent,
+     RegistrationComponent
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,

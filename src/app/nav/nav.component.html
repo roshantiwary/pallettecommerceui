@@ -26,8 +26,8 @@
 					</li>
 				</ul>
 			</h4>
-        <span class="sw-top-bar-text normal toggle-modal-register">
-            <button type="button" class="button" >Registration</button>
+        <span *ngIf="!cartdetails.firstName" class="sw-top-bar-text normal toggle-modal-register">
+            <button type="button" class="button" (click)="registration()" >Registration</button>
         </span>
     </span>
  </div>

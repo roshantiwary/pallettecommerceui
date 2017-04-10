@@ -1,0 +1,29 @@
+<div id="myModal" class="resultLoading" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="onClickedExit()">&times;</button>
+        
+        <h4 class="modal-title">Registration</h4>
+      </div>
+      <div class="modal-body">
+      <div>
+		<div class="wrapper">
+			<form  action="" method="post" name="Registration_Form" class="form-signin" (submit)="registration($event, username.value, password.value, confirmpassword.value, firstname.value, lastname.value )">       
+			    <h3 class="form-signin-heading">Welcome !</h3>
+				  <hr class="colorgraph"><br>
+				  <input type="text" class="form-control" name="username"  placeholder="Username" #username />
+          <input type="text" class="form-control" name="firstname"  placeholder="First Name" #firstname />
+				  <input type="text" class="form-control" name="lastname"  placeholder="Last Name" #lastname />
+				  <input type="password" class="form-control" name="password"  placeholder="Password" #password />
+          <input type="password" class="form-control" name="confirmpassword"  placeholder="Confirm Password" #confirmpassword />
+				  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Register" >Register</button>
+			</form>	
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
