@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { Address } from './address.component';
 
 @Component({
   selector: 'app-addressbook',
@@ -15,12 +16,41 @@ constructor(private dataService: DataService, private globalService: GlobalServi
 
 addresses : any;
 address : any;
+hideAddressForm:boolean = true ;
+hideAddressButton:boolean = false;
+submitted:boolean = false;
+hideEditAddressForm:boolean = true;
+
+model = new Address();
+editAddressModel = new Address();
+
 addressKey : string;
   ngOnInit() {
-    this.getAddresses();
+    this.getAllAddress();
   }
 
-  getAddresses(){
+ getAddress(addressKey){
+    this.globalService.getProfileAddress(addressKey)
+        .subscribe(
+                       response => {
+                        this.editAddressModel = response;
+                       },
+                       error => {
+                           if(error.status == 401) {
+                        // Token has expired Get new token and save it in local storage
+                          this.dataService.Oauth()
+                          .subscribe(data => {
+                             this.addresses = this.globalService.getProfileAddress(addressKey);
+                          })
+                      } else if(error.status == 403) {
+                        // Need to get authorized token to access the service, redirect to login page
+                        this.router.navigate(['/']);
+                      }
+                       }
+                     );
+  }
+
+  getAllAddress(){
     this.globalService.getProfileAddresses()
         .subscribe(
                        response => {
@@ -41,19 +71,21 @@ addressKey : string;
                      );
   }
 
-  editAddress(addressKey, address) {
-    this.globalService.editAddress(address, addressKey)
+  editAddress(addressKey) {
+    this.globalService.editAddress(this.editAddressModel, addressKey)
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
                         this.addresses = response.adressResponse;
+                        this.hideEditAddressForm = true;
                        },
                        error => {
                            if(error.status == 401) {
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
-                             this.addresses = this.globalService.editAddress(address, addressKey);
+                             this.addresses = this.globalService.editAddress(this.editAddressModel, addressKey);
+                             this.hideEditAddressForm = true;
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
@@ -63,19 +95,22 @@ addressKey : string;
                      );
   }
 
-  addAddress(address) {
-    this.globalService.addAddress(address)
+  addAddress() {
+    this.submitted = true;
+    this.globalService.addAddress(this.model)
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
                         this.address = response.adressResponse;
+                        this.hideAddressForm = true ;
+                        this.hideAddressButton = false;
                        },
                        error => {
                            if(error.status == 401) {
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
-                             this.address = this.globalService.addAddress(address);
+                             this.address = this.globalService.addAddress(this.model);
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
@@ -111,5 +146,21 @@ removeAddress(addresKey) {
                       }
                        }
                      );
+  }
+
+  showAddressForm(){
+    this.hideAddressForm = false ;
+    this.hideAddressButton = true;
+  }
+
+  closeAddressForm(){
+     this.hideAddressForm = true ;
+    this.hideAddressButton = false;
+    this.hideEditAddressForm = true;
+  }
+
+  showEditAddressForm(addresKey){
+    this.getAddress(addresKey);
+    this.hideEditAddressForm = false;
   }
 }

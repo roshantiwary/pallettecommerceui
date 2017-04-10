@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router' ;
 
 @Component({
   selector: 'app-orderdetail',
@@ -11,13 +12,19 @@ import { Router } from '@angular/router';
 })
 export class OrderdetailComponent implements OnInit {
 
-constructor(private dataService: DataService, private globalService: GlobalService, private router:Router) { }
+constructor(private route: ActivatedRoute, private dataService: DataService, private globalService: GlobalService, private router:Router) { }
 
 order: any;
 orderId: string;
 
 ngOnInit() {
   this.getOrder(this.orderId);
+   this.order = this.route.params.subscribe(params => {
+
+       this.orderId = params['id']; // (+) converts string 'id' to a number;
+   
+       this.getOrder(this.orderId);
+    });
 }
 
 getOrder(orderId) {

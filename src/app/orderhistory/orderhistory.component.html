@@ -13,14 +13,12 @@
             </div>
 
             <div class="col-md-9">
-                <p>
-                    {{orders}}
-                </p>
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <h1>
                             ORDER HISTORY
                         </h1>
-                        <div class="row">
+                        <p *ngIf="!orders">Orders Not Available</p>
+                        <div *ngFor="let order of orders" class="row">
                             <div class="col-labels hidden-xs hidden-sm">
                                 <div class="col-md-3">
                                     <div class="col-label">
@@ -30,11 +28,6 @@
                                 <div class="col-md-3">
                                     <div class="col-label">
                                     ORDER NUMBER
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="col-label">
-                                    QTY
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -53,7 +46,7 @@
                                     </div>
                                     <div class="values">
                                     <div>
-                                        03/14/2017
+                                        {{order.submittedDate}}
                                     </div>
                                     </div>
                                 </div>
@@ -62,15 +55,7 @@
                                     ORDER NUMBER
                                     </div>
                                     <div class="values">
-                                    VBUS6630103
-                                    </div>
-                                </div>
-                                <div class="order-col col-xs-6 col-md-1">
-                                    <div class="col-label visible-xs visible-sm">
-                                    QTY
-                                    </div>
-                                    <div class="values">
-                                    2
+                                    {{order.orderId}}
                                     </div>
                                 </div>
                                 <div class="order-col col-xs-6 col-md-3">
@@ -78,12 +63,11 @@
                                     STATUS
                                     </div>
                                     <div class="values">
-                                    Partially fulfilled
+                                    {{order.state}}
                                     </div>
                                 </div>
                                 <div class="order-col col-xs-12 col-md-2">
-                                    <a role="menuitem" href="#" title="view order details" 
-                                    aria-label="View details for order VBUS6630103 placed on 03/14/2017">View details</a>
+                                    <a role="menuitem" [routerLink]="['/account/orderdetail', {id: '1234'}]" title="view order details">View details</a>
                                 </div>
                             </div>
                         </div>
