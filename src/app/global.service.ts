@@ -7,6 +7,7 @@ export class GlobalService {
   public refreshtoken: string ;
   public firstName: string;
   item:any= [];
+  public  user :Object 
   showcart:boolean = false ;
   constructor(public http: Http) {
 
@@ -143,11 +144,12 @@ export class GlobalService {
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
-    getLoggedInProfile(){
+  getLoggedInProfile(){
       this.getProfile()
         .subscribe(
                     response => {
                      this.firstName = response.firstName;
+                     this.user = response ;
                     },
                     error => {
                       if(error.status == 401) {
