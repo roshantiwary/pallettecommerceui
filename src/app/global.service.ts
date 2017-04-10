@@ -114,7 +114,7 @@ export class GlobalService {
 
   // Get Order Detail
   getOrderDetail(orderId:string) {
-    let url:string = "/boot/private/rest/api/v1/userprofile/account/{orderId}/orderDetail";
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 

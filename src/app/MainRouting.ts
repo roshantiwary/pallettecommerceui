@@ -18,9 +18,9 @@ const app_routes: Routes = [
   { path: 'account/login', component: LoginComponent},
   { path: 'account/profile', component: ProfileComponent},
   { path: 'account/orderhistory', component: OrderhistoryComponent},
-  { path: 'account/orderdetail', component: OrderdetailComponent},
+  { path: 'account/orderdetail/:orderid', component: OrderdetailComponent},
   { path: 'account/addressbook', component: AddressbookComponent},
-  { path: 'checkout/:firstname/confirmation', component: ConfirmationComponent}
+  { path: 'checkout/:orderid/confirmation', component: ConfirmationComponent}
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes); 

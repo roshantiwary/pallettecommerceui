@@ -18,10 +18,9 @@ order: any;
 orderId: string;
 
 ngOnInit() {
-  this.getOrder(this.orderId);
    this.order = this.route.params.subscribe(params => {
 
-       this.orderId = params['id']; // (+) converts string 'id' to a number;
+       this.orderId = params['orderid']; // (+) converts string 'id' to a number;
    
        this.getOrder(this.orderId);
     });
