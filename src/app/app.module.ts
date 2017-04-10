@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddressbookComponent } from './addressbook/addressbook.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
      ProfileComponent,
      AddressbookComponent,
      OrderdetailComponent,
-     OrderhistoryComponent
+     OrderhistoryComponent,
+     ConfirmationComponent
    // StoresComponent,
     // FooterComponent,
     // ProductListComponent,

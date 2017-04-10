@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { AddressbookComponent } from './addressbook/addressbook.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 const app_routes: Routes = [
@@ -18,7 +19,8 @@ const app_routes: Routes = [
   { path: 'account/profile', component: ProfileComponent},
   { path: 'account/orderhistory', component: OrderhistoryComponent},
   { path: 'account/orderdetail', component: OrderdetailComponent},
-  { path: 'account/addressbook', component: AddressbookComponent}
+  { path: 'account/addressbook', component: AddressbookComponent},
+  { path: 'checkout/:firstname/confirmation', component: ConfirmationComponent}
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes); 

@@ -34,7 +34,6 @@ export class GlobalService {
             params.set('sku', sku );
             params.set('qty', qty.toString() );
             params.set('orderId', orderID);
-            params.set('profileId', '123' );
 
             if(!orderID){
               orderID = '';
