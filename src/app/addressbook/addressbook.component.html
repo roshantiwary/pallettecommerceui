@@ -33,8 +33,11 @@
                                    {{address.address1}},&nbsp;<br>{{address.city}},&nbsp;{{address.state}}&nbsp;{{address.postalCode}}<br> <p>{{address.phoneNumber}}</p>
                                 </div>
                                 </div>
-                                <div class="address-edit-controls col-xs-12 col-sm-2">
+                                <div class="address-edit-controls col-xs-6 col-sm-2">
                                 <a role="menuitem" (click)="showEditAddressForm(address.id.toString())" aria-label="Edit">Edit</a>
+                                </div>
+                                <div class="address-edit-controls col-xs-6 col-sm-2">
+                                <a role="menuitem" (click)="removeAddress(address.id.toString())" aria-label="Remove">Remove</a>
                                 </div>
                             </div>
                         </div>

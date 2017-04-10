@@ -145,7 +145,7 @@ export class GlobalService {
 
  // Address Address of a Profile  
   addAddress(address:any){
-    let url:string = "/boot/private/rest/api/v1/userprofile/account/addresses/";
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/addresses/add";
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
