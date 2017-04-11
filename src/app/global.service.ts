@@ -148,6 +148,12 @@ export class GlobalService {
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
+  // User registration
+  registration(user : any ) {
+    let url:string = "/boot/rest/api/v1/account/create";
+    return this.http.post(url, JSON.stringify(user,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
+
     getLoggedInProfile(){
       this.getProfile()
         .subscribe(

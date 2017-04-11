@@ -30,7 +30,7 @@
                             <ul class="col-xs-12 col-sm-8">
                                 <li><span>Order Number: </span>{{order.orderId}}</li>
                                 <li><span>Date Placed: </span>
-                                    03/06/2017
+                                    {{order.submittedDate}}
                                 </li>
                                 <li><span>Status: </span>
                                     <span>Shipped</span>
@@ -114,7 +114,7 @@
                                     <div class="col-label right visible-xs">
                                         PRICE
                                     </div>
-                                    <div class=" price">{{item.amount}}</div>
+                                    <div class=" price">{{item.itemAmount}}</div>
                                     </div>
                                     <div class="total col-xs-2 col-md-2">
                                     <div class="col-label right visible-xs">

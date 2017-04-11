@@ -10,9 +10,13 @@ import { GlobalService } from '../global.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() {
+  constructor(public globalService: GlobalService) {
 
   }
+
+  public user: any;
+  public status: boolean;
+  public message: string;
 
   close = new EventEmitter();
 
@@ -26,20 +30,17 @@ export class RegistrationComponent implements OnInit {
   registration(event, username, password, confirmpassword, firstname, lastname){
     event.preventDefault();
     console.log(username + password + confirmpassword + firstname + lastname);
-    /*
-    let userLogin = this.auth.login(username , password)
-                              .subscribe(
-                       response => {
-                        localStorage.setItem('token-set', response.access_token);
-                        localStorage.setItem('refresh-token-set',  response.refreshtoken);
-                        this.cartdetails.getLoggedInProfile();
-                        this.close.emit('event');
-                       },
-                       error => {
-                        alert(error);
-                       }
-                     );
-    */
+    this.user = { username: username, password: password  , confirmPassword:  confirmpassword , firstName : firstname, lastName: lastname};
+    this.globalService.registration(this.user)
+        .subscribe(
+          response => {
+            this.status = response.status;
+            this.message = response.message;
+            if(this.status == true) {
+              this.close.emit('event');
+            }
+          }
+        );
     }
 
 }
