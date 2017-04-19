@@ -124,7 +124,7 @@ export class GlobalService {
   
   // Remove Address from a Profile  
   removeAddress(addressKey:string){
-    let url:string = "/boot/private/rest/api/v1/userprofile/account/address"+ addressKey +"/remove";
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/address/"+ addressKey +"/remove";
     return this.http.delete(url, {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 

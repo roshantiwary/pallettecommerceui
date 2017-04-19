@@ -11,6 +11,5 @@ export class Address {
     state : String;
     zipcode : String;
     phoneNumber : String;
-    country : String;
     emailAddress : String = "default@default.com";
 }
