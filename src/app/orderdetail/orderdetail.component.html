@@ -28,9 +28,9 @@
                         </div>
                         <div class="row">
                             <ul class="col-xs-12 col-sm-8">
-                                <li><span>Order Number: </span>VBUS6560038</li>
+                                <li><span>Order Number: </span>{{order.orderId}}</li>
                                 <li><span>Date Placed: </span>
-                                    03/06/2017
+                                    {{order.submittedDate}}
                                 </li>
                                 <li><span>Status: </span>
                                     <span>Shipped</span>
@@ -65,7 +65,7 @@
                                         <span>Total</span>
                                     </div>
                                     <div class="col-xs-4 right">
-                                        <span>$1,056.12</span>
+                                        <span>{{order.orderSubTotal}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -95,13 +95,12 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div *ngFor="let item of order.orderItems"class="row">
                                     <div class="col-xs-12 col-sm-5">
                                     <img class="col-xs-12 col-sm-4" src="">
                                     <div class="item-group col-xs-12 col-sm-8">
                                         <span>Throw Blanket</span> <span>Kiev Paisley</span> <span>
-                                        SKU	#12408646</span><span>
-                                        Tracking Number: <a href="http://wwwapps.ups.com/WebTracking/processInputRequest?AgreeToTermsAndConditions=yes&amp;tracknum=1Z439004YW02186593" title="completeShipmentURL">1Z439004YW02186593</a>
+                                        SKU	#{{item.catalogRefId}}</span><span>
                                         </span>
                                     </div>
                                     </div>
@@ -109,47 +108,19 @@
                                     <div class="col-label visible-xs">
                                         QUANTITY
                                     </div>
-                                    <div class=" quantity">12</div>
+                                    <div class=" quantity">{{item.quantity}}</div>
                                     </div>
                                     <div class="col-xs-3 col-sm-2">
                                     <div class="col-label right visible-xs">
                                         PRICE
                                     </div>
-                                    <div class=" price">$49.00</div>
+                                    <div class=" price">{{item.itemAmount}}</div>
                                     </div>
                                     <div class="total col-xs-2 col-md-2">
                                     <div class="col-label right visible-xs">
                                         TOTAL
                                     </div>
-                                    <div class=" price">$588.00</div>
-                                    </div>
-                                </div>
-                                <div class="order-row">
-                                    <div class="col-xs-12 col-sm-5">
-                                    <img class="col-xs-12 col-sm-4" src="//verabradley.scene7.com/is/image/VeraBradley/15717669">
-                                    <div class="item-group col-xs-12 col-sm-8">
-                                        <span>Stroll Around Baby Bag</span>
-                                        <span>Lilac Tapestry</span>
-                                        <span>SKU	#15717669</span>
-                                    </div>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-3">
-                                    <div class="col-label visible-xs">
-                                        QUANTITY
-                                    </div>
-                                    <div class=" quantity">7</div>
-                                    </div>
-                                    <div class="col-xs-3 col-sm-2">
-                                    <div class="col-label right visible-xs">
-                                        PRICE
-                                    </div>
-                                    <div class=" price">$128.00</div>
-                                    </div>
-                                    <div class="total col-xs-2 col-md-2">
-                                    <div class="col-label right visible-xs">
-                                        TOTAL
-                                    </div>
-                                    <div class=" price">$896.00</div>
+                                    <div class=" price">{{item.amount}}</div>
                                     </div>
                                 </div>
                             </div>

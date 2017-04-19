@@ -23,6 +23,9 @@ import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
+import { RegistrationComponent } from './registration/registration.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +42,11 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
      AddressbookComponent,
      OrderdetailComponent,
      OrderhistoryComponent,
+     ConfirmationComponent,
+     RegistrationComponent,
    // StoresComponent,
     // FooterComponent,
-      ProductListComponent,
+     // ProductListComponent,
     // CartComponent,
       RoutingComponent,
     ConfirmationComponent,

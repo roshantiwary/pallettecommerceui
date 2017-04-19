@@ -31,8 +31,6 @@ export class GlobalService {
             params.set('sku', sku );
             params.set('qty', qty.toString() );
             params.set('orderId', orderID);
-       
-
             if(!orderID){
               orderID = '';
             } 
@@ -108,7 +106,7 @@ export class GlobalService {
 
   // Get Order Detail
   getOrderDetail(orderId:string) {
-    let url:string = "/boot/private/rest/api/v1/userprofile/account/{orderId}/orderDetail";
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
@@ -142,7 +140,14 @@ export class GlobalService {
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
-  getLoggedInProfile(){
+
+  // User registration
+  registration(user : any ) {
+    let url:string = "/boot/rest/api/v1/account/create";
+    return this.http.post(url, JSON.stringify(user,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
+  }
+
+    getLoggedInProfile(){
       this.getProfile()
         .subscribe(
                     response => {

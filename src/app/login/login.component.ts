@@ -6,8 +6,6 @@ import { DataService } from '../data.service';
 import { GlobalService } from '../global.service';
 import { DialogDirective } from "../dialog.directive"; 
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +20,7 @@ export class LoginComponent implements OnInit {
   close = new EventEmitter();
 
   onClickedExit() {
-      this.close.emit('fds');
+      this.close.emit('close');
   }
 
   ngOnInit() {

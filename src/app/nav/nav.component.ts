@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Inject, Renderer, Output, EventEmitter } from '@angular/core';
 import { DialogDirective } from "../dialog.directive"; 
 import { LoginComponent } from '../login/login.component';
+import { RegistrationComponent } from "../registration/registration.component";
 import { DataService } from '../data.service';
 import { GlobalService } from '../global.service';
 
@@ -36,12 +37,12 @@ export class NavComponent implements OnInit {
   }
 
   signin(){
-    //console.log(this.dialogAnchor)
-    
 		this.dialogAnchor.createDialog(LoginComponent);
-    
 	}
 
+   registration(){    
+		this.dialogAnchor.createRegistrationDialog(RegistrationComponent);
+	}
   
   signout(){
 

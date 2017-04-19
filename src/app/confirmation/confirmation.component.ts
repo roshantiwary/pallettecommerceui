@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router' ;
 import { GlobalService } from '../global.service';
 
+
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
@@ -41,3 +42,4 @@ export class ConfirmationComponent implements OnInit {
           )
   }
 }
+
