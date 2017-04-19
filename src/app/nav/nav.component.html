@@ -1,6 +1,6 @@
 <!-- Nav Menu -->
 <!--Top Bar-->
-<div class="sw-top-bar-inner-container sw-top-bar container-fluid" [(ngModel)]="cartdetails.firstName" ngDefaultControl >
+<div class="sw-top-bar-inner-container sw-top-bar container-fluid"  >
     <span class="sw-top-bar-left">
         <a href="#" class="sw-top-bar-text sw-common-padding">
             About us
@@ -9,10 +9,10 @@
     <span class="sw-top-bar-right">
         <a class="sw-top-bar-text sw-common-padding normal header-mobile-no">91 9535627854</a>
         <span class="border-after"></span>
-        <span *ngIf="!cartdetails.firstName" class="sw-top-bar-text sw-common-padding normal divider-before toggle-modal-login" >
+        <span [hidden]="cartdetails.loginStatus" class="sw-top-bar-text sw-common-padding normal divider-before toggle-modal-login" >
          	<button type="button" class="button" (click)="signin()"  >Login</button>
         </span>
-		<h4 *ngIf="cartdetails.firstName">
+		<h4 [hidden]="!cartdetails.loginStatus">
 					<ul class="nav navbar-nav">
 					
 					<li class="dropdown">

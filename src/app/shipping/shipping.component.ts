@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { ShippingAddress } from './shippingAddress';
+
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@angular/http';
@@ -10,25 +11,34 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
   templateUrl: './shipping.component.html',
   styleUrls: ['./shipping.component.css'],
   providers: [GlobalService]
+
 })
 export class ShippingComponent implements OnInit {
+  isValid = false ;
+  title: string = 'Second accordion';
+  body: string = 'my awesome content';
   items: any;
   orderTotal: any;
   orderID:string ;
+  addressess:{};
   public removeCart  :any ;
-  public removeoverlay :any ;
-   ngAfterViewInit(){
-
-   
-  }
+  public payuform :any ;
+  show2Clicked: boolean = false;
+  formdisplay:boolean = false;
+  address:any = {};
+  public  opened = false ;
+  public payment = true;
+  public hideForm = false ;
+  public paymentUrl :string ;
+  getOpitons:string
+  
   constructor(private dataService: DataService, private globalService: GlobalService, public http: Http, private router:Router) {
     document.getElementById('cart').classList.remove("open");
     document.getElementById('overlay').classList.remove("active");
-     document.getElementsByClassName('cart-button')[0].classList.add("hide");
-
-    
+    document.getElementsByClassName('cart-button')[0].classList.add("hide");
     this.globalService.showcart = true ;
-    console.log( this.globalService.showcart)
+    this.globalService.getLoggedInProfile();
+    this.getAddress();
   }
 
   ngOnInit() {  
@@ -42,12 +52,15 @@ export class ShippingComponent implements OnInit {
   submitAddress() {
     let addAddressURL: string = '/boot/rest/api/v1/shipping/address/add';
     this.submitted = true;
-    this.orderID = "order69";
-    this.model.orderId = this.orderID;
+  
+    this.model.orderId = localStorage.getItem('orderId');
     return this.http.post(addAddressURL, JSON.stringify(this.model),  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
                 .subscribe(
                   response =>{
-                      console.log(response);
+                     this.address = response.dataMap.Added_Address;
+                     this.address.addressId =  response.dataMap.Added_Address.addressId;
+                     this.formdisplay = true ;
+                     this.hideForm = false ;
                   }
                 )
 	}
@@ -58,12 +71,17 @@ export class ShippingComponent implements OnInit {
           headers.append('Content-Type', 'application/json');
           return headers;
   }
+  ngAfterViewInit(){
+   this.removeCart =  document.getElementById('cart');
+   this.payuform = document.getElementById('payuform');
+   
+  }
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
 
   getServiceData(){
     //this.orderID = JSON.parse(localStorage.getItem('orderId'));
-    this.orderID = "order69";
+    this.orderID = localStorage.getItem('orderId');
     this.globalService.getOrderSummary(this.orderID)
         .subscribe(
                        response => {
@@ -91,5 +109,49 @@ export class ShippingComponent implements OnInit {
                       }
                        }
                      );
+  }
+
+  getAddress(){
+      this.globalService.getAllAddress(localStorage.getItem('orderId'))
+                        .subscribe(response => {
+                          console.log(response);
+                          this.addressess = response.dataMap.savedAddress;
+
+                        })
+  }
+  next(event){
+    // while ((event = event.parentElement) && !event.classList.contains('accordion'));
+    // console.log(event.nextSibling)
+    // return event.nextSibling;
+      var target = event.target;
+      var pElement = target.parentElement.parentElement.parentElement.parentElement.parentElement;
+      var pclassAttr = pElement.attributes.class;
+      console.log(pclassAttr);
+      pclassAttr.style.display = 'none';
+
+  }
+  toggle(){
+     this.opened = !this.opened;
+  }
+  isValidForm() {
+    return this.isValid;  
+  }
+  proceedToPayment(){
+
+  }
+
+  showPayment(addressID){
+      this.globalService.goTopayment(addressID , localStorage.getItem('orderId'))
+                        .subscribe(response => {   
+                          console.log(response)
+                        })
+      
+      this.payment = false ;
+      this.paymentUrl = "http://www.palletteapart.com/boot/"+  localStorage.getItem('orderId') + "/paynow" ;
+      this.payuform.action = this.paymentUrl;
+     
+  }
+  gotoPayment(){
+       this.payuform.submit()
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, Renderer } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Renderer, Output, EventEmitter } from '@angular/core';
 import { DialogDirective } from "../dialog.directive"; 
 import { LoginComponent } from '../login/login.component';
 import { DataService } from '../data.service';
@@ -9,8 +9,7 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
-  entryComponents: [LoginComponent],
-  providers:[DataService, GlobalService]
+  entryComponents: [LoginComponent]
 })
 export class NavComponent implements OnInit {
   
@@ -19,8 +18,11 @@ export class NavComponent implements OnInit {
   public  openCart: any ;
   public overlay: any;
   @ViewChild(DialogDirective) dialogAnchor: DialogDirective;
+
+
   constructor(private dataService: DataService, public cartdetails: GlobalService, public http: Http, private render:Renderer) { 
     this.cartdetails.refreshtoken = localStorage.getItem('refresh-token-set');
+    //this.cartdetails.loginStatus = false;
     //this.cartdetails = globalService;
   }
 

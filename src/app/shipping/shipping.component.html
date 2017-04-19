@@ -1,57 +1,108 @@
-{{diagnostic}}
-<div class="container">
-  <div class="span8">
-  <div class="span6">
-    <h1>Shipping Address</h1>
-    <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" [(ngModel)]="model.email" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
+
+
+    <div id="accordion" class="col-md-8" >
+
+        <!--// accordion list-->
+        <div class="panel panel-default"  *ngIf="title">
+            <div class="panel-titte">
+              <div class="card-header" (click)="toggle()">{{title}}  </div>
+              <div  class="card-block" [ngClass]="{hide: !opened}" [hidden]="!payment">
+               <div class="container">
+                <div class="col-md-8"  *ngIf="!globalService.loginStatus">
+                  <div class="col-md-12">
+                    <h1>Shipping Address</h1>
+                    <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm" [hidden] = "formdisplay" [hidden]="hideForm">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" [(ngModel)]="model.email" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">firstName</label>
+                        <input type="text" class="form-control" id="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">lastName</label>
+                        <input type="text" class="form-control" id="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="address1">Apartment/Street</label>
+                        <input type="text" class="form-control" id="address1" [(ngModel)]="model.address1" #address1="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="address2">Area</label>
+                        <input type="text" class="form-control" id="address2" [(ngModel)]="model.address2" #address2="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" [(ngModel)]="model.city" #city="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" [(ngModel)]="model.state" #state="ngModel"  [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="postalCode">PostalCode</label>
+                        <input type="text" class="form-control" id="postalCode" [(ngModel)]="model.postalCode" #postalCode="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                      </div>
+                      <div class="form-group">
+                        <label for="phoneNumber">PhoneNumber</label>
+                        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" [ngModelOptions]="{standalone: true}"   required>
+                      </div>
+                      <button type="submit" class="btn btn-success" [disabled]="!shipAddForm.form.valid" >Submit</button>
+                    </form>
+                    <div [hidden] = "!formdisplay">
+                       {{address.lastName}}  {{address.address1}}  {{address.city}}
+                      {{address.state}}
+                      {{address}}
+                      <!--<button (click)="showPayment()"> OK </button>-->
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-8"  *ngIf="globalService.loginStatus">
+                    eqew
+                    <label *ngFor="let address of addressess">
+                      <input type="radio" name="options" value="{{address.addressId}}" [ngModel]="address.addressId" (click)="getOpitons = address.addressId">
+                        {{address.firstName}}
+                        {{address.lastName}}
+                        {{address.address1}}
+                       
+                  </label>
+                    <button (click)="showPayment(getOpitons)"> OK </button>
+                  </div>
+                  
+                  <!--<div  *ngIf="globalService.firstName">
+                      <div>{{globalService.user.firstName}}</div>
+                      <div>{{globalService.user.lastName}}</div>
+                      <button (show2)="triggerToggle($event)">OK</button>
+                  </div>-->
+                </div>
+                  
+              </div>
+            </div>
+        </div>
+     
+         <div class="panel panel-default"  *ngIf="title">
+            <div class="panel-titte" >
+              <div class="card-header" >{{title}} </div>
+                <div  class="card-block" [ngClass]="{hide: !opened}" [hidden]="payment">
+                  <div class="container">
+                    payment options
+                    <form id="payuform"  name="payuform" method=POST  action="">
+                            <input type="submit" value="Submit"  (click)="gotoPayment()" />
+                     </form>
+                  </div>
+                </div>
+            </div>
+          </div>
       </div>
-       <div class="form-group">
-        <label for="email">firstName</label>
-        <input type="text" class="form-control" id="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngModelOptions]="{standalone: true}"  required>
+      <div class="col-md-4">
+          <div *ngFor="let item of items">
+            Title: {{item.productTitle}} 
+            SKU Id: {{item.catalogRefId}}
+            quantity: {{item.quantity}}
+            Store: {{item.productBrand}}
+            Price: {{item.amount}}
+            Order Total {{orderTotal}}
+        </div>
       </div>
-       <div class="form-group">
-        <label for="email">lastName</label>
-        <input type="text" class="form-control" id="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" [ngModelOptions]="{standalone: true}"  required>
-      </div>
-       <div class="form-group">
-        <label for="address1">Apartment/Street</label>
-        <input type="text" class="form-control" id="address1" [(ngModel)]="model.address1" #address1="ngModel" [ngModelOptions]="{standalone: true}"  required>
-      </div>
-       <div class="form-group">
-        <label for="address2">Area</label>
-        <input type="text" class="form-control" id="address2" [(ngModel)]="model.address2" #address2="ngModel" [ngModelOptions]="{standalone: true}"  required>
-      </div>
-       <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" [(ngModel)]="model.city" #city="ngModel" [ngModelOptions]="{standalone: true}"  required>
-      </div>
-       <div class="form-group">
-        <label for="state">State</label>
-        <input type="text" class="form-control" id="state" [(ngModel)]="model.state" #state="ngModel"  [ngModelOptions]="{standalone: true}"  required>
-      </div>
-       <div class="form-group">
-        <label for="postalCode">PostalCode</label>
-        <input type="text" class="form-control" id="postalCode" [(ngModel)]="model.postalCode" #postalCode="ngModel" [ngModelOptions]="{standalone: true}"  required>
-      </div>
-      <div class="form-group">
-        <label for="phoneNumber">PhoneNumber</label>
-        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" [ngModelOptions]="{standalone: true}"   required>
-      </div>
-      <button type="submit" class="btn btn-success" [disabled]="!shipAddForm.form.valid">Submit</button>
-    </form>
-    </div>
-    <div class="span2">
-        <div *ngFor="let item of items">
-          Title: {{item.productTitle}} 
-          SKU Id: {{item.catalogRefId}}
-          quantity: {{item.quantity}}
-          Store: {{item.productBrand}}
-          Price: {{item.amount}}
-          Order Total {{orderTotal}}
-       </div>
-    </div>
-</div>
-</div>
