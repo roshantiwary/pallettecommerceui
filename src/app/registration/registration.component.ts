@@ -17,6 +17,8 @@ export class RegistrationComponent implements OnInit {
   public user: any;
   public status: boolean;
   public message: string;
+  public accessToken: string;
+  public refreshToken: string;
 
   close = new EventEmitter();
 
@@ -27,16 +29,17 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
-  registration(event, username, password, confirmpassword, firstname, lastname){
+  registration(event, username, password, firstname, lastname, age){
     event.preventDefault();
-    console.log(username + password + confirmpassword + firstname + lastname);
-    this.user = { username: username, password: password  , confirmPassword:  confirmpassword , firstName : firstname, lastName: lastname};
+    this.user = {user:{ emailAddress: username, password: password, firstName : firstname, lastName: lastname, age: age}, password: password};
     this.globalService.registration(this.user)
         .subscribe(
           response => {
             this.status = response.status;
             this.message = response.message;
             if(this.status == true) {
+              localStorage.setItem('token-set', response.oauth2AccessToken.access_token);
+              localStorage.setItem('refresh-token-set', response.oauth2AccessToken.refresh_token);
               this.close.emit('event');
             }
           }
