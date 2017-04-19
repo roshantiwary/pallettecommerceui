@@ -117,7 +117,7 @@ export class GlobalService {
   }
 
   // Edit Address of a Profile  
-  editAddress(address:any, addressKey:string){
+  editAddress(address:any){
     let url:string = "/boot/private/rest/api/v1/userprofile/account/address/edit";
     return this.http.put(url, JSON.stringify(address,) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }

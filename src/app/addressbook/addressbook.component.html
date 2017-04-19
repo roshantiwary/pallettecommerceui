@@ -30,7 +30,7 @@
                                     {{address.firstName}} {{address.lastName}}
                                 </div>
                                 <div class="address-details">
-                                   {{address.address1}},&nbsp;<br>{{address.city}},&nbsp;{{address.state}}&nbsp;{{address.postalCode}}<br> <p>{{address.phoneNumber}}</p>
+                                   {{address.address1}},&nbsp;<br>{{address.city}},&nbsp;{{address.state}}&nbsp;{{address.zipcode}}<br> <p>{{address.phoneNumber}}</p>
                                 </div>
                                 </div>
                                 <div class="address-edit-controls col-xs-6 col-sm-2">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-3 col-md-2">
                             <label for="zip-code">ZIP CODE</label>
-                            <input name="zip-code" id="zip-code" [(ngModel)]="model.postalCode"  placeholder="Zip Code" type="text" value="" aria-required="true">
+                            <input name="zip-code" id="zip-code" [(ngModel)]="model.zipcode"  placeholder="Zip Code" type="text" value="" aria-required="true">
                             </div>
                         </div>
                         <div class="row">
@@ -150,7 +150,7 @@
                             </div>
                             <div class="col-xs-6 col-sm-3 col-md-2">
                             <label for="zip-code">ZIP CODE</label>
-                            <input name="zip-code" id="zip-code" [(ngModel)]="editAddressModel.postalCode"  placeholder="Zip Code" type="text" value="" aria-required="true">
+                            <input name="zip-code" id="zip-code" [(ngModel)]="editAddressModel.zipcode"  placeholder="Zip Code" type="text" value="" aria-required="true">
                             </div>
                         </div>
                         <div class="row">
