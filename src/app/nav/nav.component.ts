@@ -53,7 +53,7 @@ export class NavComponent implements OnInit {
   }
 
    signOutService(){
-      let signoutURL : '/boot/oauth/logout';
+      let signoutURL  = '/boot/oauth/logout';
       return this.http.get(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
                 .subscribe(
                   response =>{
