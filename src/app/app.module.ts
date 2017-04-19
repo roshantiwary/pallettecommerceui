@@ -22,7 +22,9 @@ import { AddressbookComponent } from './addressbook/addressbook.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+
 import { RegistrationComponent } from './registration/registration.component';
+
 
 @NgModule({
   declarations: [
@@ -41,12 +43,13 @@ import { RegistrationComponent } from './registration/registration.component';
      OrderdetailComponent,
      OrderhistoryComponent,
      ConfirmationComponent,
-     RegistrationComponent
+     RegistrationComponent,
    // StoresComponent,
     // FooterComponent,
-    // ProductListComponent,
+     // ProductListComponent,
     // CartComponent,
-    // RoutingComponent,
+      RoutingComponent,
+    ConfirmationComponent,
    
   ],
   imports: [

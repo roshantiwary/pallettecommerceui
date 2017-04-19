@@ -5,23 +5,20 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
 export class GlobalService {
   public closeCartModel ;
   public refreshtoken: string ;
-  public firstName: string;
+  //public flagName: boolean = false;
+  public Name:string;
   item:any= [];
+  public  user :Object;
+  public loginStatus = false ;
   showcart:boolean = false ;
+  public cartItems:any ;
+  public firstName:string
   constructor(public http: Http) {
 
-    this.getLocalStorage();
+    this.getCart();
 
    }
-   getLocalStorage(){
-		var retrievedObject = localStorage.getItem('items');
-		let ItemTotal = JSON.parse(retrievedObject);
-		if(ItemTotal !=  null) {
-			this.item = ItemTotal ;
-		}
-		//
-		return ItemTotal; 
-	}
+   
   addtoCart(selectsize:string, qty:number, orderID:string, sku:string ){
             let url:string;
             if(qty>1){
@@ -34,13 +31,12 @@ export class GlobalService {
             params.set('sku', sku );
             params.set('qty', qty.toString() );
             params.set('orderId', orderID);
-
             if(!orderID){
               orderID = '';
             } 
             //let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
              return this.http
-                        .post(url, JSON.stringify({ productId: selectsize, quantity: qty  , orderId:  orderID , profileId : '123', skuId: sku},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
+                        .post(url, JSON.stringify({ productId: selectsize, quantity: qty  , orderId:  orderID , skuId: sku},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
 		
 	    }
     removeProduct(sku:string, itemID, orderID:string){
@@ -71,12 +67,8 @@ export class GlobalService {
       }
     }
     getCart(){
-      var retrievedObject = localStorage.getItem('items'),
+      let retrievedObject = localStorage.getItem('items'),
       ItemTotal = JSON.parse(retrievedObject);
-      if(ItemTotal !=  null) {
-        //this.item = ItemTotal ;
-      }
-      //
       return ItemTotal; 
     }
 
@@ -148,6 +140,7 @@ export class GlobalService {
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
+
   // User registration
   registration(user : any ) {
     let url:string = "/boot/rest/api/v1/account/create";
@@ -158,7 +151,9 @@ export class GlobalService {
       this.getProfile()
         .subscribe(
                     response => {
-                     this.firstName = response.firstName;
+                     this.loginStatus = true;
+                     this.user = response ;
+                     this.firstName = response.firstName ;
                     },
                     error => {
                       if(error.status == 401) {
@@ -171,6 +166,16 @@ export class GlobalService {
                     }
                   );
   }
+  // get all the address
+  getAllAddress(orderID){
+      let url:string = "/boot/rest/api/v1/shipping/address/savedAddress/" + orderID ;
+      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
+
+  goTopayment(addressid, orderId){
+      let url:string = "/boot/rest/api/v1/shipping/address/set/" + addressid + "/to/" + orderId ;
+      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+  }
     // openCart(){
     //   this.closeCartModel = true ;
     //   //return this.cartModal ;
@@ -179,4 +184,12 @@ export class GlobalService {
 
       
     // }
+
+     getorderDetails(orderID ){
+       let url:string = "/boot/orderConfirmation/order/" + orderID ;
+        return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json())
+     }
+     firstDropDownChanged(){
+       alert('fds')
+     }
 }

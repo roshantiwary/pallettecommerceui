@@ -9,7 +9,9 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { OrderdetailComponent } from './orderdetail/orderdetail.component';
 import { AddressbookComponent } from './addressbook/addressbook.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+
 import { RegistrationComponent } from './registration/registration.component';
+
 
 
 const app_routes: Routes = [
@@ -19,6 +21,11 @@ const app_routes: Routes = [
   { path: 'account/login', component: LoginComponent},
   { path: 'account/profile', component: ProfileComponent},
   { path: 'account/orderhistory', component: OrderhistoryComponent},
+
+//   { path: 'account/orderdetail', component: OrderdetailComponent},
+//   { path: 'account/addressbook', component: AddressbookComponent},
+//   { path: 'checkout/:orderID/confirmation', component: ConfirmationComponent}
+// =======
   { path: 'account/orderdetail/:orderid', component: OrderdetailComponent},
   { path: 'account/addressbook', component: AddressbookComponent},
   { path: 'checkout/:orderid/confirmation', component: ConfirmationComponent},

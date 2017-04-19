@@ -1,4 +1,4 @@
-<section id="cart" class="side-menu right transition {{1+3}} {{cartdetails.closeCartModel}}" [class.open]="cartdetails.closeCartModel" >
+<section id="cart" class="side-menu right transition {{1+3}}" [class.open]="globalService.closeCartModel" >
   <div class="header">
 
         <h4>Your Cart</h4>
@@ -6,34 +6,30 @@
             close
         </div>
     </div>
-    <article *ngFor="let item of cartdetails.getCart(); let i = index" class="row cartitem" > 
-    <div  id={{item.productId}}>
-      <div class="col-md-4"><img src="/src/images/products/image1.jpg"></div>
-      <div class="col-md-8">
-        <div class="close" (click) = "removeProduct(item.catalogRefId, item.productId)">×</div>
-        <h4>{{item.productTitle}}</h4>
-        
-        <div class="cart-details">
-             <select (change)="onRepositorySelected()">
-                <option value="">-- please choose an option --</option>
-                <option *ngFor="let option of options" >{{ option.name }}</option>
-            </select> 
+    <div *ngFor="let  item of  globalService.getCart(); let i = index" class="row cartitem" > 
+    
+        <div class="col-md-4"><img src="/src/images/products/image1.jpg"></div>
+        <div class="col-md-8">
+            <div class="close" (click) = "removeProduct(item.catalogRefId, item.productId)">×</div>
+            <h4>{{item.productTitle}}</h4>
+            <div class="cart-details">
+                <select (change)="globalService.firstDropDownChanged()" >
+                    <option *ngFor="let option of options" >{{ option }}</option>
+                </select> 
             
             ₹ {{item.amount}}
+            </div>
         </div>
         
-      </div>
     </div>
-    </article>
-
-    <div *ngIf="cartdetails.getTotalCount() == 0" class="sw-empty-cart">
+    <div *ngIf="globalService.getTotalCount() == 0" class="sw-empty-cart">
 
 	  <div class="cartempty">
             Your cart is empty.
         </div>
         <a href="index.html" class="buttom-animate">Continue Shopping</a>
     </div> 
-    <div *ngIf="cartdetails.getTotalCount()  != 0">
+    <div *ngIf="globalService.getTotalCount()  != 0">
     <div class="total"   >
             <label>SUBTOTAL</label>
             ₹ {{cartTotal}}

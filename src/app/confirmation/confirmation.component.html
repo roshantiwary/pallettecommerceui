@@ -1,6 +1,18 @@
-<p>
-  confirmation works!
 
- {{orderId}}
 
-</p>
+
+You can track your order {{confirmationData.orderId}}
+
+Total {{confirmationData.orderSubTotal}}
+
+data {{confirmationData.submittedDate}}
+
+
+
+<article *ngFor="let item of items">
+
+  {{item.productTitle}}
+  {{item.description}}
+  {{item.description}} {{item.amount}}
+</article>
+

@@ -8,8 +8,7 @@ import {Data} from '../data';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
-  providers: [DataService, GlobalService]
+  styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
  private sub: any;
@@ -24,7 +23,7 @@ export class ProductComponent implements OnInit {
 
  public cartResult: any
 
-  constructor(private route: ActivatedRoute, private dataService: DataService, private globalService : GlobalService, private router:Router) {
+  constructor(private route: ActivatedRoute, private dataService: DataService, public globalService : GlobalService, private router:Router) {
     //this.factoryObj  = globalService.getFactory()  ;
     this.orderID = localStorage.getItem('orderId');
   }
@@ -85,6 +84,7 @@ export class ProductComponent implements OnInit {
                     localStorage.setItem('orderId', this.orderID);
                     localStorage.setItem('cartTotal', cartTotal);
                     this.globalService.getTotalCount();
+                    this.globalService.cartItems = JSON.parse(localStorage.getItem('items') );
                     //this.cartComponent.getCartItems() ;
                   },
                   error => {
