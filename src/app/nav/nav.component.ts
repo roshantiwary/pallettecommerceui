@@ -48,8 +48,8 @@ export class NavComponent implements OnInit {
 
         this.signOutService();
         this.cartdetails.refreshtoken = '';
-        //localStorage.removeItem('refresh-token-set');
-        //localStorage.removeItem('token-set');
+        localStorage.removeItem('refresh-token-set');
+        localStorage.removeItem('token-set');
   }
 
    signOutService(){
