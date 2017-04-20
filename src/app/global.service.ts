@@ -105,14 +105,14 @@ export class GlobalService {
   }
 
   // Edit Address of a Profile  
-  editAddress(address:any, addressKey:string){
+  editAddress(address:any){
     let url:string = "/boot/private/rest/api/v1/userprofile/account/address/edit";
     return this.http.put(url, JSON.stringify(address,) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
   
   // Remove Address from a Profile  
   removeAddress(addressKey:string){
-    let url:string = "/boot/private/rest/api/v1/userprofile/account/address"+ addressKey +"/remove";
+    let url:string = "/boot/private/rest/api/v1/userprofile/account/address/"+ addressKey +"/remove";
     return this.http.delete(url, {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 

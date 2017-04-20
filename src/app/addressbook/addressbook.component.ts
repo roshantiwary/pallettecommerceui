@@ -72,7 +72,8 @@ addressKey : string;
   }
 
   editAddress(addressKey) {
-    this.globalService.editAddress(this.editAddressModel, addressKey)
+    this.editAddressModel.id = addressKey;
+    this.globalService.editAddress(this.editAddressModel)
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
@@ -84,7 +85,7 @@ addressKey : string;
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
-                             this.addresses = this.globalService.editAddress(this.editAddressModel, addressKey);
+                             this.addresses = this.globalService.editAddress(this.editAddressModel);
                              this.hideEditAddressForm = true;
                           })
                       } else if(error.status == 403) {

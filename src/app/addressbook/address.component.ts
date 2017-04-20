@@ -9,8 +9,7 @@ export class Address {
     address3 : String;
     city : String;
     state : String;
-    postalCode : String;
+    zipcode : String;
     phoneNumber : String;
-    country : String;
-    email : String = "default@default.com";
+    emailAddress : String = "default@default.com";
 }
