@@ -24,7 +24,7 @@ export class StoresComponent implements OnInit {
     this.dataService.browse()
         .subscribe(
                     response => {
-                    this.stores = response.items;
+                    this.stores = response.brands;
                     },
                     error => {
                       if(error.status == 401) {
