@@ -17,6 +17,10 @@ export class ProfileComponent implements OnInit {
     this.getServiceData();
   }
 
+  signout(){
+    this.globalService.signOutService(); 
+  }
+
  getServiceData(){
     this.globalService.getProfile()
         .subscribe(

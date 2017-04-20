@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@angular/http';
 @Injectable()
 export class GlobalService {
@@ -15,7 +15,7 @@ export class GlobalService {
   public firstName:string;
   public newUser:any;
   public getTotal:number = 0 ;;
-  constructor(public http: Http) {
+  constructor(public http: Http, private router:Router) {
 
     this.getCart();
 
@@ -180,4 +180,18 @@ export class GlobalService {
      firstDropDownChanged(){
        alert('fds')
      }
+
+     // Sign Out
+      signOutService(){
+      this.refreshtoken = '';
+      localStorage.removeItem('refresh-token-set');
+      localStorage.removeItem('token-set');
+      let signoutURL  = '/boot/oauth/logout';
+      return this.http.post(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res)
+                .subscribe(
+                  response =>{
+                      this.router.navigate(['/']);
+                  }
+                )
+  }
 }

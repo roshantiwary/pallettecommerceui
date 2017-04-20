@@ -45,21 +45,7 @@ export class NavComponent implements OnInit {
 	}
   
   signout(){
-
-        this.signOutService();
-        this.cartdetails.refreshtoken = '';
-        localStorage.removeItem('refresh-token-set');
-        localStorage.removeItem('token-set');
-  }
-
-   signOutService(){
-      let signoutURL  = '/boot/oauth/logout';
-      return this.http.post(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
-                .subscribe(
-                  response =>{
-                      console.log(response);
-                  }
-                )
+        this.cartdetails.signOutService();   
   }
 
   private getHeaders(){

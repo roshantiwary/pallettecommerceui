@@ -26,6 +26,10 @@ ngOnInit() {
     });
 }
 
+ signout(){
+    this.globalService.signOutService();   
+  }
+
 getOrder(orderId) {
   this.globalService.getOrderDetail(orderId)
         .subscribe(

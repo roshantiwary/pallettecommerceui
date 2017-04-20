@@ -21,6 +21,10 @@ export class OrderhistoryComponent implements OnInit {
     this.getOrders();
   }
 
+  signout(){
+    this.globalService.signOutService();  
+  }
+
 getOrders(){
     //this.orderID = JSON.parse(localStorage.getItem('orderId'));
     this.globalService.getOrderHistory()

@@ -149,6 +149,10 @@ removeAddress(addresKey) {
                      );
   }
 
+  signout(){
+    this.globalService.signOutService();  
+  }
+
   showAddressForm(){
     this.hideAddressForm = false ;
     this.hideAddressButton = true;
