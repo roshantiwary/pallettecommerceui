@@ -48,13 +48,13 @@ export class NavComponent implements OnInit {
 
         this.signOutService();
         this.cartdetails.refreshtoken = '';
-        localStorage.removeItem('refresh-token-set');
-        localStorage.removeItem('token-set');
+        //localStorage.removeItem('refresh-token-set');
+        //localStorage.removeItem('token-set');
   }
 
    signOutService(){
       let signoutURL  = '/boot/oauth/logout';
-      return this.http.get(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
+      return this.http.post(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
                 .subscribe(
                   response =>{
                       console.log(response);
