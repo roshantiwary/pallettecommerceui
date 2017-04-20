@@ -19,7 +19,6 @@ export class CartComponent implements OnInit {
  
   private _values1 = ["1", "2", "3"];
   constructor(public globalService: GlobalService) {
-      this.cartTotal = localStorage.getItem('cartTotal') ;
       this.globalService.cartItems = this.globalService.getCart() ;
       
    }
@@ -35,7 +34,7 @@ export class CartComponent implements OnInit {
   firstDropDownChanged(val: any) {
     console.log(val);
   }
-  onChange(sku, qty,productId){
+  onChange(productId, qty, sku){
       this.orderID = localStorage.getItem('orderId');
       this.cartTotal = localStorage.getItem('cartTotal');
       this.selected = qty ;
@@ -46,6 +45,23 @@ export class CartComponent implements OnInit {
                this.cartTotal = response.orderSubTotal;
                localStorage.setItem('cartTotal', this.cartTotal);
 
+               this.globalService.cartItems = response.cartItems;
+                localStorage.setItem('items', JSON.stringify(this.globalService.cartItems));
+                this.globalService.getTotal = response.orderSubTotal;
+              //  for(var i = 0 ; i <this.globalService.items.length  ; i++){
+              //       if(this.globalService.items[i].catalogRefId === sku ){
+              //         this.globalService.items.splice(i, 1);
+                        
+              //       } 
+              //     }
+              //    for(var i = 0 ; i < response.cartItems ; i++){
+              //       if(response.cartItems[i].catalogRefId === sku ){
+              //         this.globalService.items.splice(i, 1);
+                      
+              //       } 
+              //     }
+              
+                 // localStorage.setItem('items', JSON.stringify(item));
             }
           )
   }
@@ -56,10 +72,11 @@ export class CartComponent implements OnInit {
             response =>{
               var retrievedObject = localStorage.getItem('items'),
               ItemTotal = JSON.parse(retrievedObject);
-              this.cartTotal = response.orderSubTotal;
+              //this.cartTotal = response.orderSubTotal;
               localStorage.setItem('cartTotal', this.cartTotal);
               localStorage.setItem('items', JSON.stringify(response.cartItems));
-              this.globalService.getTotalCount()
+              this.globalService.getTotal = response.orderSubTotal;
+              //this.globalService.getTotalCount()
               for (let i=0; i < ItemTotal.length ; i++){
                 if(ItemTotal[i].productId === itemID){
                   ItemTotal.splice(i, 1);
@@ -67,7 +84,7 @@ export class CartComponent implements OnInit {
                   el.parentNode.removeChild( el );
                   this.SetLocalStorage(ItemTotal);
                 }
-              };	
+              };	``
               
             }
           )

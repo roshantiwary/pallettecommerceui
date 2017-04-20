@@ -79,11 +79,11 @@ export class ProductComponent implements OnInit {
                     console.log(response) ;
                     this.cartResult = response.cartItems;
                     this.orderID = response.orderId;
-                    var cartTotal = response.orderSubTotal;
+                   // cartTotal = response.orderSubTotal;
                     localStorage.setItem('items', JSON.stringify(this.cartResult));
                     localStorage.setItem('orderId', this.orderID);
-                    localStorage.setItem('cartTotal', cartTotal);
-                    this.globalService.getTotalCount();
+                   // localStorage.setItem('cartTotal', cartTotal);
+                    this.globalService.getTotal = response.orderSubTotal;
                     this.globalService.cartItems = JSON.parse(localStorage.getItem('items') );
                     //this.cartComponent.getCartItems() ;
                   },

@@ -1,17 +1,22 @@
-
+<header class="col-xs-12 nopadding shippingheader">
+      <span class="col-xs-8 nopadding">CUSTOMER INFORMATION </span>
+      <span class="col-xs-4 nopadding">
+        ORDER SUMMARY
+      </span>
+    </header>
 
     <div id="accordion" class="col-md-8" >
 
         <!--// accordion list-->
         <div class="panel panel-default"  *ngIf="title">
             <div class="panel-titte">
-              <div class="card-header" (click)="toggle()">{{title}}  </div>
-              <div  class="card-block" [ngClass]="{hide: !opened}" [hidden]="!payment">
-               <div class="container">
-                <div class="col-md-8"  *ngIf="!globalService.loginStatus">
+              <div class="card-header" (click)="toggle()">Add Address </div>
+              <div  class="card-block" [ngClass]="{hide: opened}" >
+               <div class="row">
+                <div class="col-md-11"  *ngIf="!globalService.loginStatus">
                   <div class="col-md-12">
                     <h1>Shipping Address</h1>
-                    <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm" [hidden] = "formdisplay" [hidden]="hideForm">
+                    <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm" [hidden] = "formdisplay" [hidden]="hideForm" id="shipAdd">
                       <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" [(ngModel)]="model.email" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
@@ -84,12 +89,11 @@
      
          <div class="panel panel-default"  *ngIf="title">
             <div class="panel-titte" >
-              <div class="card-header" >{{title}} </div>
-                <div  class="card-block" [ngClass]="{hide: !opened}" [hidden]="payment">
+              <div class="card-header" >Make Payment </div>
+                <div  class="card-block" [hidden]="payment">
                   <div class="container">
-                    payment options
                     <form id="payuform"  name="payuform" method=POST  action="">
-                            <input type="submit" value="Submit"  (click)="gotoPayment()" />
+                            <input type="submit" value="Make Payment"  class="btn-success" (click)="gotoPayment()" />
                      </form>
                   </div>
                 </div>
@@ -97,12 +101,19 @@
           </div>
       </div>
       <div class="col-md-4">
-          <div *ngFor="let item of items">
-            Title: {{item.productTitle}} 
-            SKU Id: {{item.catalogRefId}}
-            quantity: {{item.quantity}}
-            Store: {{item.productBrand}}
-            Price: {{item.amount}}
-            Order Total {{orderTotal}}
-        </div>
+          <div class="checkout-order-container">
+            <div *ngFor="let item of items" class="singleitem">
+              <div class="each">
+              <h3>{{item.productTitle}} </h3>
+            
+              <!--SKU Id: {{item.catalogRefId}}-->
+              <p>quantity: {{item.quantity}}</p>
+              <p> Store: {{item.productBrand}}</p>
+            
+              ₹: {{item.amount}}
+              </div>
+          </div>
+         <b>Order Total ₹ {{orderTotal}}</b>
+         
+         </div>
       </div>

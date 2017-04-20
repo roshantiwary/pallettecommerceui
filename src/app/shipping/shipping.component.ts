@@ -61,6 +61,7 @@ export class ShippingComponent implements OnInit {
                      this.address.addressId =  response.dataMap.Added_Address.addressId;
                      this.formdisplay = true ;
                      this.hideForm = false ;
+                     this.payment = false ;
                   }
                 )
 	}
@@ -88,6 +89,7 @@ export class ShippingComponent implements OnInit {
                         console.log(JSON.stringify(response)) ;
                         this.items = response.cartItems;
                         this.orderTotal = response.orderSubTotal;
+                        
                        // localStorage.setItem('token', response);
                        },
                        error => {

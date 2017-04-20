@@ -6,7 +6,6 @@ import { GlobalService } from '../global.service';
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  providers: [AuthService, GlobalService]
 })
 export class RegistrationComponent implements OnInit {
 
@@ -37,6 +36,9 @@ export class RegistrationComponent implements OnInit {
           response => {
             this.status = response.status;
             this.message = response.message;
+            this.globalService.newUser = response.apiUser;
+            this.globalService.firstName = response.apiUser.firstName;
+            this.globalService.loginStatus = true;
             if(this.status == true) {
               localStorage.setItem('token-set', response.oauth2AccessToken.access_token);
               localStorage.setItem('refresh-token-set', response.oauth2AccessToken.refresh_token);

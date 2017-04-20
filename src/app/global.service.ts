@@ -7,12 +7,14 @@ export class GlobalService {
   public refreshtoken: string ;
   //public flagName: boolean = false;
   public Name:string;
-  item:any= [];
+  items:any= [];
   public  user :Object;
   public loginStatus = false ;
   showcart:boolean = false ;
   public cartItems:any ;
-  public firstName:string
+  public firstName:string;
+  public newUser:any;
+  public getTotal:number = 0 ;;
   constructor(public http: Http) {
 
     this.getCart();
@@ -69,23 +71,9 @@ export class GlobalService {
     getCart(){
       let retrievedObject = localStorage.getItem('items'),
       ItemTotal = JSON.parse(retrievedObject);
+      this.items = ItemTotal ;
       return ItemTotal; 
     }
-
-    getTotalCount(){
-	    var count:  number = 0;
-
-	   var retrievedObject =  JSON.parse(localStorage.getItem('items')) || [];
-
-	    for(let ii = 0 ; ii < retrievedObject.length; ii++) {
-	        var item = parseInt(retrievedObject[ii].quantity);
-          console.log(item)
-	        count += item;
-	    }
-		
-	    return count;
-	}
-
   // Get Logged-In Profile for Account Pages
   getProfile() {
      let url:string = "/boot/private/rest/api/v1/userprofile/user";
