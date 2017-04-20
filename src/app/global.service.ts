@@ -184,6 +184,7 @@ export class GlobalService {
      // Sign Out
       signOutService(){
       this.refreshtoken = '';
+      this.loginStatus = false;
       localStorage.removeItem('refresh-token-set');
       localStorage.removeItem('token-set');
       let signoutURL  = '/boot/oauth/logout';
