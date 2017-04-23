@@ -41,7 +41,7 @@ export class StoresComponent implements OnInit {
                               this.dataService.browse()
                               .subscribe(
                                 response => {
-                              this.stores = response.items;
+                              this.stores = response.brands;
                               },error => {});
                           })
                       } else if(error.status == 403) {
