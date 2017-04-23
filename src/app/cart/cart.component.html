@@ -6,7 +6,7 @@
             close
         </div>
     </div>
-    <div *ngFor="let  item of  globalService.cartItems; let i = index" class="row cartitem" > 
+    <div *ngFor="let  item of  globalService.cartItems; let i = index" class="row cartitem" id="{{item.productId}}"> 
     
         <div class="col-md-4"><img src="/src/images/products/{{item.productId}}_t.jpg"></div>
         <div class="col-md-8">
@@ -22,14 +22,15 @@
         </div>
         
     </div>
-    <div *ngIf="globalService.getTotalCount == 0" class="sw-empty-cart">
+    <div *ngIf="globalService.getTotal == 0" class="sw-empty-cart">
 
 	  <div class="cartempty">
             Your cart is empty.
         </div>
-        <a href="index.html" class="buttom-animate">Continue Shopping</a>
+        <button [routerLink]="['']" class="buttom-animate" (click)="closeCart()" >Continue Shopping</button>
+       
     </div> 
-    <div *ngIf="globalService.getTotalCount  != 0">
+    <div *ngIf="globalService.getTotal  != 0" class="cartsubtotal">
     <div class="total"   >
             <label>SUBTOTAL</label>
             ₹ {{globalService.getTotal}}
@@ -43,3 +44,6 @@
 </section>
 
 <div class="overlay" id="overlay"></div>
+<div [hidden]="!globalService.isDelayedRunning" class="spinner">  
+    <div id="resultLoading" style="width: 100%; height: 100%; position: fixed; z-index: 10000000; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto;"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div><div class="bounce3"></div></div><div class="bg" style="background: rgba(0, 0, 0, 0.498039); width: 100%; height: 100%; position: absolute; top: 0px; opacity: 0.5;"></div></div>
+</div>  

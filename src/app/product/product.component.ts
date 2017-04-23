@@ -5,6 +5,7 @@ import { GlobalService } from '../global.service';
 import { Router } from '@angular/router';
 import {CartComponent} from '../cart/cart.component'
 import {Data} from '../data';
+import {ProductPipe} from '../product.pipe'
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -26,6 +27,7 @@ export class ProductComponent implements OnInit {
   constructor(private route: ActivatedRoute, private dataService: DataService, public globalService : GlobalService, private router:Router) {
     //this.factoryObj  = globalService.getFactory()  ;
     this.orderID = localStorage.getItem('orderId');
+    this.globalService.showcart = false;
   }
 
   ngOnInit() {
@@ -73,9 +75,11 @@ export class ProductComponent implements OnInit {
       }
 
       addTocart(sku:string, quantity: number, selectsize:string){
+        this.globalService.isDelayedRunning = true;
         this.globalService.addtoCart(sku, quantity , this.orderID, selectsize)
          .subscribe(
                   response => {
+                    this.globalService.isDelayedRunning = false;
                     console.log(response) ;
                     this.cartResult = response.cartItems;
                     this.orderID = response.orderId;
@@ -84,7 +88,7 @@ export class ProductComponent implements OnInit {
                     localStorage.setItem('orderId', this.orderID);
                    // localStorage.setItem('cartTotal', cartTotal);
                     this.globalService.getTotal = response.orderSubTotal;
-                    this.globalService.cartItems = JSON.parse(localStorage.getItem('items') );
+                    this.globalService.cartItems = response.cartItems;
                     //this.cartComponent.getCartItems() ;
                   },
                   error => {

@@ -1,0 +1,25 @@
+.btn-success {
+       color: #fff;
+    background-color: #e85826;
+    border: none;
+    margin-bottom: 20px;
+    /* width: 179px; */
+    margin-top: 16px;
+    height: 37px;
+    padding: 9px 40px;
+    margin-top: 31px;
+    display: inline-block;
+    cursor: pointer;
+}
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: #e85826;
+    border-color: #e85826;
+}
+.lead {
+    font-weight: 500;
+    margin-top: 0;
+    text-decoration: none;
+}
+.panel {
+    border: none;
+}

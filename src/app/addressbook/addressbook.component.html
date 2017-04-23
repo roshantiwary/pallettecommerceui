@@ -17,14 +17,14 @@
                     <h1>ADDRESS BOOK</h1>
     
                     <!-- No Saved Address -->
-                    <div *ngIf="!addresses" class="address-edit-container row">
+                    <!--<div *ngIf="!addresses" class="address-edit-container">
                         You don't have any stored addresses.
-                    </div>
+                    </div>-->
 
                     <!-- Saved Address -->
-                    <div *ngIf="addresses" class="address-edit-container row">
+                    <div *ngIf="addresses" class="address-edit-container">
                         <div *ngFor="let address of addresses">
-                            <div class="col-xs-12 address">
+                            <div class="col-xs-12 address" id="{{address.id.toString()}}">
                                 <div class="address-details col-xs-12 col-sm-10">
                                 <div class="addressee">
                                     {{address.firstName}} {{address.lastName}}
@@ -41,71 +41,97 @@
                                 </div>
                             </div>
                         </div>
+                          
+                    </div>
+                    <div *ngIf="newAddress">
+                                     <div class="col-xs-12 address" id="{{globalService.address.id.toString()}}">
+                                            <div class="address-details col-xs-12 col-sm-10">
+                                            <div class="addressee">
+                                                {{globalService.address.firstName}} {{globalService.address.lastName}}
+                                            </div>
+                                            <div class="address-details">
+                                            {{globalService.address.address1}},&nbsp;<br>{{globalService.address.city}},&nbsp;
+                                            {{globalService.address.state}}&nbsp;{{globalService.address.zipcode}}<br> <p>
+                                                {{globalService.address.phoneNumber}}</p>
+                                            </div>
+                                            </div>
+                                            <div class="address-edit-controls col-xs-6 col-sm-2">
+                                            <a role="menuitem" (click)="showEditAddressForm(globalService.address.id.toString())" aria-label="Edit">Edit</a>
+                                            </div>
+                                            <div class="address-edit-controls col-xs-6 col-sm-2">
+                                            <a role="menuitem" (click)="removeAddress(globalService.address.id.toString())" aria-label="Remove">Remove</a>
+                                            </div>
+                                        </div>
+
+                                </div>
+                    <div class="address-add col-xs-12 col-sm-6 col-md-6"  [hidden]="AddressFlag">
+                     <a role="menuitem" (click)= "showAddressForm()" class="button-secondary add-new-address btn-success">ADD NEW ADDRESS</a>
                     </div>
 
-                    <div class="address-add col-xs-12 col-sm-5 col-md-4">
-                     <a role="menuitem" [hidden]="hideAddressButton" (click)= "showAddressForm()" class="button-secondary add-new-address">ADD NEW ADDRESS</a>
+                
+                
+                      <!--ADD Address Form -->
+                    <div class="address-add col-xs-12 col-xs-12" [hidden]="!AddressFlag">
+                        <div class="panel panel-default" id="add_new_address">
+                            <div class="panel-titte">
+                            <div class="card-header">ADD NEW ADDRESS</div>
+                            <div class="row">
+                            <div class="col-md-11">
+                            <div class="col-md-12">
+                                <form (ngSubmit)="addAddress()" #addAddressForm="ngForm" *ngIf="!AddressFlags">
+                                    <div class="form-group">
+                                        <label for="first-name">FIRST NAME</label>
+                                        <input name="first-name" [(ngModel)]="model.firstName" id="first-name" class="form-control" placeholder="First Name" type="text" value="" aria-required="true">
+                                    <div class="form-group">
+                                        <label for="last-name">LAST NAME</label>
+                                        <input name="last-name" [(ngModel)]="model.lastName" id="last-name" class="form-control" placeholder="Last Name" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">ADDRESS BOOK</label>
+                                        <input name="address" [(ngModel)]="model.address1" id="address" class="form-control" placeholder="Address" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bldg">APT / BUILDING (Optional)</label>
+                                        <input name="bldg" id="bldg" [(ngModel)]="model.address2" class="form-control" placeholder="APT / BUILDING (Optional)" type="text" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">CITY</label>
+                                        <input name="city" id="city" [(ngModel)]="model.city" class="form-control" placeholder="CITY" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state" id="state-label">STATE</label>
+                                        <input name="state" id="state" [(ngModel)]="model.state"  class="form-control" placeholder="STATE" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zip-code">ZIP CODE</label>
+                                        <input name="zip-code" id="zip-code" [(ngModel)]="model.zipcode" class="form-control" placeholder="Zip Code" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">PHONE</label>
+                                        <input maxlength="15" name="phone" id="phone" [(ngModel)]="model.phoneNumber" class="form-control" placeholder="Phone" type="text" value="" aria-required="true">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-4">
+                                            <a role="menuitem" (click)= "addAddress()" class="btn btn-success">ADD ADDRESS</a>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-5 col-md-4">
+                                            <a role="menuitem" (click)= "closeAddressForm()" class="btn btn-success">CANCEL</a>
+                                        </div>
+                                    </div>						
+                                    </div>
+                                </form>
+                              
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!--ADD Address Form -->
-        <div class="col-md-9" [hidden]="hideAddressForm">
-			<div class="panel panel-default" id="add_new_address">
-				<div class="panel-titte">
-                <div class="card-header">ADD NEW ADDRESS</div>
-				<div class="row">
-				<div class="col-md-11">
-				<div class="col-md-12">
-                <form (ngSubmit)="addAddress()" #addAddressForm="ngForm">
-                    <div class="form-group">
-                            <label for="first-name">FIRST NAME</label>
-                            <input name="first-name" [(ngModel)]="model.firstName" id="first-name" class="form-control" placeholder="First Name" type="text" value="" aria-required="true">
-                        <div class="form-group">
-                            <label for="last-name">LAST NAME</label>
-                            <input name="last-name" [(ngModel)]="model.lastName" id="last-name" class="form-control" placeholder="Last Name" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">ADDRESS BOOK</label>
-                            <input name="address" [(ngModel)]="model.address1" id="address" class="form-control" placeholder="Address" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="bldg">APT / BUILDING (Optional)</label>
-                            <input name="bldg" id="bldg" [(ngModel)]="model.address2" class="form-control" placeholder="APT / BUILDING (Optional)" type="text" value="">
-                        </div>
-                        <div class="form-group">
-                            <label for="city">CITY</label>
-                            <input name="city" id="city" [(ngModel)]="model.city" class="form-control" placeholder="CITY" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="state" id="state-label">STATE</label>
-                            <input name="state" id="state" [(ngModel)]="model.state"  class="form-control" placeholder="STATE" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="zip-code">ZIP CODE</label>
-                            <input name="zip-code" id="zip-code" [(ngModel)]="model.zipcode" class="form-control" placeholder="Zip Code" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">PHONE</label>
-                            <input maxlength="15" name="phone" id="phone" [(ngModel)]="model.phoneNumber" class="form-control" placeholder="Phone" type="text" value="" aria-required="true">
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-5 col-md-4">
-                                <a role="menuitem" (click)= "addAddress()" class="btn btn-success">ADD ADDRESS</a>
-                            </div>
-                            <div class="col-xs-12 col-sm-5 col-md-4">
-                                <a role="menuitem" (click)= "closeAddressForm()" class="btn btn-success">CANCEL</a>
-                            </div>
-                        </div>						
-                    </div>
-                </form>
-				</div>
-				</div>
-				</div>
-				</div>
-                </div>
-            </div>
+      
 
             <!-- Edit Address Form -->
             <div [hidden]="hideEditAddressForm">

@@ -20,7 +20,7 @@ export class ConfirmationComponent implements OnInit {
    ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
 
-       this.orderID = params['orderID']; // (+) converts string 'id' to a number;
+       this.orderID = params['orderid']; // (+) converts string 'id' to a number;
    
        this.orderDetails(this.orderID);
     });

@@ -1,18 +1,29 @@
 
 
 
-You can track your order {{confirmationData.orderId}}
+<h2>Order successfully placed You can track your order: {{confirmationData.orderId}}</h2>
 
-Total {{confirmationData.orderSubTotal}}
 
 data {{confirmationData.submittedDate}}
 
+<div class="row">
+  <div class="col-md-4">
+          <div class="checkout-order-container">
+            <div *ngFor="let item of items" class="singleitem row">
+              <div class="each">
+              <div class="col-md-4"><img src="/src/images/products/{{item.productId}}_t.jpg"></div>
+                <div class="col-md-8">
+                    <b>{{item.productTitle}}</b> 
+                    ₹:  {{item.amount}}
+                </div>
+              </div>
+          </div>
+       
+         
+         </div>
+      </div>
+</div>
 
 
-<article *ngFor="let item of items">
-
-  {{item.productTitle}}
-  {{item.description}}
-  {{item.description}} {{item.amount}}
-</article>
+<h1>Total ₹ {{confirmationData.orderSubTotal}} </h1>
 

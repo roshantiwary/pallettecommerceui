@@ -9,15 +9,13 @@ import { Http , URLSearchParams , Response, Headers , RequestOptions } from '@an
 @Component({
   selector: 'app-shipping',
   templateUrl: './shipping.component.html',
-  styleUrls: ['./shipping.component.css'],
-  providers: [GlobalService]
+  styleUrls: ['./shipping.component.css']
 
 })
 export class ShippingComponent implements OnInit {
   isValid = false ;
   title: string = 'Second accordion';
   body: string = 'my awesome content';
-  items: any;
   orderTotal: any;
   orderID:string ;
   addressess:{};
@@ -32,7 +30,7 @@ export class ShippingComponent implements OnInit {
   public paymentUrl :string ;
   getOpitons:string
   
-  constructor(private dataService: DataService, private globalService: GlobalService, public http: Http, private router:Router) {
+  constructor(private dataService: DataService, public globalService: GlobalService, public http: Http, private router:Router) {
     document.getElementById('cart').classList.remove("open");
     document.getElementById('overlay').classList.remove("active");
     document.getElementsByClassName('cart-button')[0].classList.add("hide");
@@ -75,51 +73,35 @@ export class ShippingComponent implements OnInit {
   ngAfterViewInit(){
    this.removeCart =  document.getElementById('cart');
    this.payuform = document.getElementById('payuform');
+   this.paymentUrl = "http://www.palletteapart.com/boot/"+  localStorage.getItem('orderId') + "/paynow" ;
+   this.payuform.action = this.paymentUrl;
    
   }
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
 
   getServiceData(){
-    //this.orderID = JSON.parse(localStorage.getItem('orderId'));
-    this.orderID = localStorage.getItem('orderId');
-    this.globalService.getOrderSummary(this.orderID)
-        .subscribe(
-                       response => {
-                        console.log(JSON.stringify(response)) ;
-                        this.items = response.cartItems;
-                        this.orderTotal = response.orderSubTotal;
-                        
-                       // localStorage.setItem('token', response);
-                       },
-                       error => {
-                           if(error.status == 401) {
-                            //Remove Token if exists
-                            localStorage.removeItem('refresh-token-set');
-                            localStorage.removeItem('token-set');
-                        // Token has expired Get new token and save it in local storage
-                          this.dataService.Oauth()
-                          .subscribe(data => {
-                              this.globalService.getOrderSummary(this.orderID);
-                          })
-                      } else if(error.status == 403) {
-                        //Remove Token if exists
-                        localStorage.removeItem('refresh-token-set');
-                        localStorage.removeItem('token-set');
-                        // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/']);
-                      }
-                       }
-                     );
+    this.globalService.getCart()
+       
   }
 
   getAddress(){
       this.globalService.getAllAddress(localStorage.getItem('orderId'))
                         .subscribe(response => {
                           console.log(response);
+                          this.globalService.loginStatus = true;
                           this.addressess = response.dataMap.savedAddress;
 
-                        })
+                        },
+                        
+                        error => {
+                          if(error.status == 500) {
+                             this.globalService.loginStatus = false;
+                             this.formdisplay = false ;
+                            // Tempory Check for addAddress
+                            
+                          }              
+                    })
   }
   next(event){
     // while ((event = event.parentElement) && !event.classList.contains('accordion'));
@@ -149,8 +131,7 @@ export class ShippingComponent implements OnInit {
                         })
       
       this.payment = false ;
-      this.paymentUrl = "http://www.palletteapart.com/boot/"+  localStorage.getItem('orderId') + "/paynow" ;
-      this.payuform.action = this.paymentUrl;
+ 
      
   }
   gotoPayment(){

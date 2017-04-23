@@ -56,9 +56,13 @@
                       <button type="submit" class="btn btn-success" [disabled]="!shipAddForm.form.valid" >Submit</button>
                     </form>
                     <div [hidden] = "!formdisplay">
-                       {{address.lastName}}  {{address.address1}}  {{address.city}}
-                      {{address.state}}
-                      {{address}}
+                          {{address.firstName}}
+                        {{address.lastName}}
+                        {{address.address1}}
+                        {{address.address2}}
+                        {{address.address3}}
+                        {{address.city}}
+                          {{address.state}}
                       <!--<button (click)="showPayment()"> OK </button>-->
                       </div>
                     </div>
@@ -93,7 +97,7 @@
                 <div  class="card-block" [hidden]="payment">
                   <div class="container">
                     <form id="payuform"  name="payuform" method=POST  action="">
-                            <input type="submit" value="Make Payment"  class="btn-success" (click)="gotoPayment()" />
+                            <input type="submit" value="Submit"  class="btn btn-success" (click)="gotoPayment()" />
                      </form>
                   </div>
                 </div>
@@ -102,18 +106,22 @@
       </div>
       <div class="col-md-4">
           <div class="checkout-order-container">
-            <div *ngFor="let item of items" class="singleitem">
-              <div class="each">
-              <h3>{{item.productTitle}} </h3>
+            <div *ngFor="let item of globalService.cartItems" class="singleitem">
+              <div class="each row">
+              <div class="col-md-4"><img class="image" src="/src/images/products/{{item.productId}}_t.jpg"></div>
+              <div class="col-md-8">
+                 <h3>{{item.productTitle}} </h3>
             
-              <!--SKU Id: {{item.catalogRefId}}-->
-              <p>quantity: {{item.quantity}}</p>
-              <p> Store: {{item.productBrand}}</p>
-            
-              ₹: {{item.amount}}
+                <!--SKU Id: {{item.catalogRefId}}-->
+                <p>quantity: {{item.quantity}}</p>
+                <p> Store: {{item.productBrand}}</p>
+              
+                ₹: {{item.amount}}
+              </div>
+             
               </div>
           </div>
-         <b>Order Total ₹ {{orderTotal}}</b>
+         <b>Order Total ₹ {{globalService.getTotal}}</b>
          
          </div>
       </div>

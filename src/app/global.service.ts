@@ -10,14 +10,14 @@ export class GlobalService {
   items:any= [];
   public  user :Object;
   public loginStatus = false ;
-  showcart:boolean = false ;
+ public  showcart:boolean = false ;
   public cartItems:any ;
   public firstName:string;
   public newUser:any;
-  public getTotal:number = 0 ;;
+  public getTotal:number = 0 ;
+  public isDelayedRunning = false ;
+  public address :any;
   constructor(public http: Http, private router:Router) {
-
-    this.getCart();
 
    }
    
@@ -68,12 +68,7 @@ export class GlobalService {
         return LocalQty ;
       }
     }
-    getCart(){
-      let retrievedObject = localStorage.getItem('items'),
-      ItemTotal = JSON.parse(retrievedObject);
-      this.items = ItemTotal ;
-      return ItemTotal; 
-    }
+  
   // Get Logged-In Profile for Account Pages
   getProfile() {
      let url:string = "/boot/private/rest/api/v1/userprofile/user";
@@ -81,13 +76,41 @@ export class GlobalService {
   }
 
   // Get Order Summary for Checkout Pages
-  getOrderSummary(orderID:string) {
+  getCart() {
+     let orderID = localStorage.getItem('orderId');
      let url:string = "/boot/rest/api/v1/cart/" + orderID + "/details";
-     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
+     this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json())
+             .subscribe(
+                       response => {
+                        console.log(JSON.stringify(response)) ;  
+                       // localStorage.setItem('token', response);
+                        this.getTotal = response.orderSubTotal;
+                        this.cartItems = response.cartItems;
+                       },
+                       error => {
+                           if(error.status == 401) {
+                            //Remove Token if exists
+                            localStorage.removeItem('refresh-token-set');
+                            localStorage.removeItem('token-set');
+                        // Token has expired Get new token and save it in local storage
+                         // this.dataService.Oauth()
+                          // .subscribe(data => {
+                          //     this.getCart();
+                          // })
+                      } else if(error.status == 403) {
+                        //Remove Token if exists
+                        localStorage.removeItem('refresh-token-set');
+                        localStorage.removeItem('token-set');
+                        // Need to get authorized token to access the service, redirect to login page
+                        this.router.navigate(['/']);
+                      }
+                       }
+                     );
   }
 
   // Get Order History for a Profile
   getOrderHistory() {
+    
     let url:string = "/boot/private/rest/api/v1/userprofile/account/orders";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
@@ -156,6 +179,7 @@ export class GlobalService {
   }
   // get all the address
   getAllAddress(orderID){
+    // shipmentAddress
       let url:string = "/boot/rest/api/v1/shipping/address/savedAddress/" + orderID ;
       return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }

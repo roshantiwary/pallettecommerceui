@@ -146,4 +146,9 @@ img{
     flex: 1;
     text-align: left;
 }
+.cartsubtotal{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+}
 

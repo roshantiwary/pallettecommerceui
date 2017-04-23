@@ -24,6 +24,7 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 import { RegistrationComponent } from './registration/registration.component';
+import { ProductPipe } from './product.pipe';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { RegistrationComponent } from './registration/registration.component';
     // CartComponent,
       RoutingComponent,
     ConfirmationComponent,
+    ProductPipe,
    
   ],
   imports: [

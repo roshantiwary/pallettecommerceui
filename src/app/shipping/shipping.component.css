@@ -46,6 +46,9 @@ form#shipAdd {
     padding-left: 14px;
     padding-bottom: 18px;
 }
+.image{
+    width: 100%;
+}
 header.col-xs-12.nopadding.shippingheader {
     font-size: 17px;
     font-weight: bold;
@@ -68,4 +71,7 @@ header.col-xs-12.nopadding.shippingheader {
     display: block;
     text-align: center;
     color: #e85826
+}
+.card-block {
+    background: white;
 }

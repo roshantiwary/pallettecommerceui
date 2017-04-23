@@ -7,49 +7,30 @@ import { Address } from './address.component';
 @Component({
   selector: 'app-addressbook',
   templateUrl: './addressbook.component.html',
-  styleUrls: ['./addressbook.component.css'],
-  providers: [GlobalService]
+  styleUrls: ['./addressbook.component.css']
 })
 export class AddressbookComponent implements OnInit {
 
-constructor(private dataService: DataService, private globalService: GlobalService, private router:Router) { }
-
 addresses : any;
 address : any;
-hideAddressForm:boolean = true ;
-hideAddressButton:boolean = false;
+AddressFlag:boolean = false ;
 submitted:boolean = false;
 hideEditAddressForm:boolean = true;
-
+addressess = [] ;
 model = new Address();
 editAddressModel = new Address();
+newAddress = false;
+
+constructor(private dataService: DataService, public globalService: GlobalService, private router:Router) { 
+
+   this.newAddress = false
+}
+
 
 addressKey : string;
   ngOnInit() {
     this.getAllAddress();
   }
-
- getAddress(addressKey){
-    this.globalService.getProfileAddress(addressKey)
-        .subscribe(
-                       response => {
-                        this.editAddressModel = response;
-                       },
-                       error => {
-                           if(error.status == 401) {
-                        // Token has expired Get new token and save it in local storage
-                          this.dataService.Oauth()
-                          .subscribe(data => {
-                             this.addresses = this.globalService.getProfileAddress(addressKey);
-                          })
-                      } else if(error.status == 403) {
-                        // Need to get authorized token to access the service, redirect to login page
-                        this.router.navigate(['/']);
-                      }
-                       }
-                     );
-  }
-
   getAllAddress(){
     this.globalService.getProfileAddresses()
         .subscribe(
@@ -102,16 +83,18 @@ addressKey : string;
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
-                        this.address = response.adressResponse;
-                        this.hideAddressForm = true ;
-                        this.hideAddressButton = false;
+                        this.globalService.address = response.address;
+                        this.AddressFlag = false;
+                        this.newAddress = true;
+                      //  this.hideAddressForm = true ;
+                       // this.hideAddressButton = false;
                        },
                        error => {
                            if(error.status == 401) {
                         // Token has expired Get new token and save it in local storage
                           this.dataService.Oauth()
                           .subscribe(data => {
-                             this.address = this.globalService.addAddress(this.model);
+                             this.globalService.address = this.globalService.addAddress(this.model);
                           })
                       } else if(error.status == 403) {
                         // Need to get authorized token to access the service, redirect to login page
@@ -121,12 +104,34 @@ addressKey : string;
                      );
   }
 
-removeAddress(addresKey) {
- this.globalService.removeAddress(addresKey)
+  // Get all the Address
+    getAddresses(){
+      this.globalService.getAllAddress(localStorage.getItem('orderId'))
+                        .subscribe(response => {
+                          console.log(response);
+                          this.globalService.loginStatus = true;
+                          this.addressess = response.dataMap.savedAddress;
+
+                        },
+                        
+                        error => {
+                          if(error.status == 500) {
+                             this.globalService.loginStatus = false;
+                            // this.formdisplay = false ;
+                            // Tempory Check for addAddress
+                            
+                          }              
+                    })
+  }
+
+  removeAddress(addresKey) {
+    this.globalService.removeAddress(addresKey)
         .subscribe(
                        response => {
                         console.log(JSON.stringify(response)) ;
                         console.log(response);
+                         var el = document.getElementById(addresKey);
+                         el.parentNode.removeChild( el );
                        },
                        error => {
                            if(error.status == 401) {
@@ -154,18 +159,18 @@ removeAddress(addresKey) {
   }
 
   showAddressForm(){
-    this.hideAddressForm = false ;
-    this.hideAddressButton = true;
+   // this.hideAddressForm = false ;
+    this.AddressFlag = true;
   }
 
   closeAddressForm(){
-     this.hideAddressForm = true ;
-    this.hideAddressButton = false;
+     //this.hideAddressForm = true ;
+    //this.hideAddressButton = false;
     this.hideEditAddressForm = true;
   }
 
   showEditAddressForm(addresKey){
-    this.getAddress(addresKey);
+   // this.getAddress(addresKey);
     this.hideEditAddressForm = false;
   }
 }

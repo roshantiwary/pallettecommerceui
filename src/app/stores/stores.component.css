@@ -1,0 +1,15 @@
+.info {
+    position: absolute;
+    width: 300px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+article.list {
+    position: relative;
+    min-height: 400px;
+}
+.item-desc {
+    padding: 15px 0;
+    text-align: center;
+}

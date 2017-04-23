@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import {Data} from '../data';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+import { GlobalService } from '../global.service';
 @Component({
   selector: 'store-app',
   templateUrl: './stores.component.html',
@@ -12,7 +13,10 @@ import { Observable } from 'rxjs/Rx';
 export class StoresComponent implements OnInit {
   stores: Object;
 
-  constructor(private dataService: DataService, private router:Router) { }
+  constructor(private dataService: DataService, private router:Router, public globalService: GlobalService) { 
+
+     this.globalService.showcart = false;
+  }
 
   ngOnInit() {
     this.getServiceData();

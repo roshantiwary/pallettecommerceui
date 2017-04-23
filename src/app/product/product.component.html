@@ -1,4 +1,9 @@
-<div class="col-xs-12 col-md-4" *ngFor="let product of products  " id="{{product.id}}">
+<div class="col-xs-12 text-right">
+
+Search Product: <input type="text" [(ngModel)]="filterproduct">
+</div>
+
+<div class="col-xs-12 col-md-4" *ngFor="let product of products | product: filterproduct" id="{{product.id}}">
   <article  class="list" >
     <div class="info">
        <img src="/src/images/products/{{product.imageResponse.thumbnailImageUrl}}">
@@ -14,3 +19,7 @@
       </div>
   </article>
 </div>
+
+<div [hidden]="!globalService.isDelayedRunning" class="spinner">  
+    <div id="resultLoading" style="width: 100%; height: 100%; position: fixed; z-index: 10000000; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto;"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div><div class="bounce3"></div></div><div class="bg" style="background: rgba(0, 0, 0, 0.498039); width: 100%; height: 100%; position: absolute; top: 0px; opacity: 0.5;"></div></div>
+</div>  

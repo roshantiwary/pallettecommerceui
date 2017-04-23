@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
  
   private _values1 = ["1", "2", "3"];
   constructor(public globalService: GlobalService) {
+      console.log('ewq')
       this.globalService.cartItems = this.globalService.getCart() ;
       
    }
@@ -27,7 +28,6 @@ export class CartComponent implements OnInit {
    this.removeoverlay = document.getElementById('overlay');   
   }
   onRepositorySelected(value){
-    alert('fsd');
     return ;
   }
    
@@ -38,10 +38,12 @@ export class CartComponent implements OnInit {
       this.orderID = localStorage.getItem('orderId');
       this.cartTotal = localStorage.getItem('cartTotal');
       this.selected = qty ;
+      this.globalService.isDelayedRunning = true;
       this.globalService.addtoCart(sku, qty , this.orderID, productId )
           .subscribe(
             response => {
                console.log(response) ;
+                this.globalService.isDelayedRunning = false;
                this.cartTotal = response.orderSubTotal;
                localStorage.setItem('cartTotal', this.cartTotal);
 
@@ -67,9 +69,11 @@ export class CartComponent implements OnInit {
   }
   removeProduct(sku, itemID){
       this.orderID = localStorage.getItem('orderId');
+       this.globalService.isDelayedRunning = true;
       this.globalService.removeProduct(sku, itemID, this.orderID)
           .subscribe(
             response =>{
+               this.globalService.isDelayedRunning = false;
               var retrievedObject = localStorage.getItem('items'),
               ItemTotal = JSON.parse(retrievedObject);
               //this.cartTotal = response.orderSubTotal;

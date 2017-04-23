@@ -9,10 +9,10 @@
     <span class="sw-top-bar-right">
         <a class="sw-top-bar-text sw-common-padding normal header-mobile-no">91 9535627854</a>
         <span class="border-after"></span>
-        <span [hidden]="cartdetails.loginStatus" class="sw-top-bar-text sw-common-padding normal divider-before toggle-modal-login" >
+        <span *ngIf="!cartdetails.firstName"   class="sw-top-bar-text sw-common-padding normal divider-before toggle-modal-login" >
          	<button type="button" class="button" (click)="signin()"  >Login</button>
         </span>
-		<h4 [hidden]="!cartdetails.loginStatus">
+		<h4 *ngIf="cartdetails.firstName" >
 					<ul class="nav navbar-nav">
 					
 					<li class="dropdown">
@@ -43,7 +43,7 @@
 	        			<span class="icon-bar"></span>
 	        			<span class="icon-bar"></span>
 	      		</button>
-	      		<a href="#"><img class="pull-left logo" src="/src/images/download.png"></a>
+	      		<a  [routerLink]="['']" ><img class="pull-left logo" src="/src/images/download.png"></a>
 				<div class="cart-button cart-menu-toggle GTM_open_cart_button" (click)= "displayCartFuntion()" [hidden]="cartdetails.showcart">
 					
                 	<span >
