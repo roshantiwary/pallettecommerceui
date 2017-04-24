@@ -68,16 +68,17 @@
                     </div>
                     
                   </div>
-                  <div class="col-md-8"  *ngIf="globalService.loginStatus">
-                    eqew
+                  <div class="col-md-8 listAddress"  *ngIf="globalService.loginStatus">
                     <label *ngFor="let address of addressess">
                       <input type="radio" name="options" value="{{address.addressId}}" [ngModel]="address.addressId" (click)="getOpitons = address.addressId">
-                        {{address.firstName}}
-                        {{address.lastName}}
-                        {{address.address1}}
+                      <div class="address">
+                        <p>  {{address.firstName}},   {{address.lastName}}</p>
+                        <p>{{address.address1}}, {{address.address2}}</p>
+                        <p>{{address.state}}, {{address.city}}</p>
+                        </div>
                        
                   </label>
-                    <button (click)="showPayment(getOpitons)"> OK </button>
+                    <button (click)="showPayment(getOpitons)" class="btn-success"> OK </button>
                   </div>
                   
                   <!--<div  *ngIf="globalService.firstName">

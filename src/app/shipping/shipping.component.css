@@ -65,6 +65,7 @@ header.col-xs-12.nopadding.shippingheader {
     width: 179px;
      margin-top: 16px;
     height: 37px;
+    display: block;
 }
 .checkout-order-container b {
     font-size: 20px;
@@ -74,4 +75,12 @@ header.col-xs-12.nopadding.shippingheader {
 }
 .card-block {
     background: white;
+}
+.address{
+ float: right;
+     margin-left: 12px;
+}
+.col-md-8.listAddress{
+    margin-left: 12px;
+    margin-top: 13px;
 }

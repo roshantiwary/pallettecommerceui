@@ -5,11 +5,9 @@ article.col-md-3 {
     padding: 33px;
 }
 .each img {
-    width: 100%;
+    width: 59%;
 }
 .checkout-order-container{
-    background-color: #f3f3f3;
-    max-width: 400px;
     padding: 13px;
     margin-top: 61px;
 }
@@ -32,6 +30,10 @@ header.col-xs-12.nopadding.shippingheader {
 }
 .each  h3 {
      color: #e85826; 
+    position: relative;
+}
+.each .col-md-8 {
+    margin-top: 115px;
 }
 .btn-success {
     color: #fff;
@@ -55,4 +57,10 @@ h1 {
     display: block;
     /* text-align: center; */
     color: #e85826;
+    font-size: 29px;
+    display: block;
+    color: #e85826;
+    margin-left: 98px;
+    border-top: 1px solid #f1e8e8;
+    padding-top: 23px;
 }

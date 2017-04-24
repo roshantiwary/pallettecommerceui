@@ -33,7 +33,7 @@ export class ShippingComponent implements OnInit {
   constructor(private dataService: DataService, public globalService: GlobalService, public http: Http, private router:Router) {
     document.getElementById('cart').classList.remove("open");
     document.getElementById('overlay').classList.remove("active");
-    document.getElementsByClassName('cart-button')[0].classList.add("hide");
+   // document.getElementsByClassName('cart-button')[0].classList.add("hide");
     this.globalService.showcart = true ;
     this.globalService.getLoggedInProfile();
     this.getAddress();
@@ -91,6 +91,7 @@ export class ShippingComponent implements OnInit {
                           console.log(response);
                           this.globalService.loginStatus = true;
                           this.addressess = response.dataMap.savedAddress;
+                          this.getOpitons = response.dataMap.savedAddress[0].addressId;
 
                         },
                         
