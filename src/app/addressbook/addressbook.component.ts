@@ -154,6 +154,24 @@ addressKey : string;
                      );
   }
 
+  getAddress(addressKey){
+    this.globalService.getProfileAddress(addressKey)
+        .subscribe(
+                       response => {
+                        this.editAddressModel = response.adressResponse;
+                       },
+                       error => {
+                           if(error.status == 401) {
+                        // Token has expired Get new token and save it in local storage
+                          this.dataService.Oauth();
+                      } else if(error.status == 403) {
+                        // Need to get authorized token to access the service, redirect to login page
+                        this.router.navigate(['/']);
+                      }
+                       }
+                     );
+  }
+
   signout(){
     this.globalService.signOutService();  
   }
@@ -170,7 +188,7 @@ addressKey : string;
   }
 
   showEditAddressForm(addresKey){
-   // this.getAddress(addresKey);
+    this.getAddress(addresKey);
     this.hideEditAddressForm = false;
   }
 }
