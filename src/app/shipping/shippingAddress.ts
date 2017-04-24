@@ -1,7 +1,7 @@
 export class ShippingAddress {
   constructor(
   ) {  }
-    email : String;
+    emailAddress : String;
     firstName : String;
     lastName : String;
     address1 : String;
@@ -9,7 +9,7 @@ export class ShippingAddress {
     address3 : String;
     city : String;
     state : String;
-    postalCode : String;
+    zipcode : String;
     phoneNumber : String;
     orderId : String;
 }
