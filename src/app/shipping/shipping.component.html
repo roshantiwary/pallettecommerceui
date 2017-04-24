@@ -19,7 +19,7 @@
                     <form (ngSubmit)="submitAddress()" #shipAddForm="ngForm" [hidden] = "formdisplay" [hidden]="hideForm" id="shipAdd">
                       <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" [(ngModel)]="model.email" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
+                        <input type="text" class="form-control" [(ngModel)]="model.emailAddress" #email="ngModel" id="email" [ngModelOptions]="{standalone: true}" required>
                       </div>
                       <div class="form-group">
                         <label for="email">firstName</label>
@@ -47,7 +47,7 @@
                       </div>
                       <div class="form-group">
                         <label for="postalCode">PostalCode</label>
-                        <input type="text" class="form-control" id="postalCode" [(ngModel)]="model.postalCode" #postalCode="ngModel" [ngModelOptions]="{standalone: true}"  required>
+                        <input type="text" class="form-control" id="postalCode" [(ngModel)]="model.zipcode" #postalCode="ngModel" [ngModelOptions]="{standalone: true}"  required>
                       </div>
                       <div class="form-group">
                         <label for="phoneNumber">PhoneNumber</label>
