@@ -13,3 +13,6 @@
 .text-muted {
     color: #636c72!important;
 }
+pre {
+    border: none !important;
+}

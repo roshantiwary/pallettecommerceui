@@ -70,3 +70,7 @@ html {
     background-color: #e85826;
     border-color: #e85826;
 }
+pre{
+  
+    border: none !important;
+}
