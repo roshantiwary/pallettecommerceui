@@ -10,8 +10,8 @@ export class GlobalService {
   items:any= [];
   public  user :Object;
   public loginStatus = false ;
- public  showcart:boolean = false ;
-  public cartItems:any ;
+  public  showcart:boolean = false ;
+  public cartItems = [] ;
   public firstName:string;
   public newUser:any;
   public getTotal:number = 0 ;
@@ -207,16 +207,14 @@ export class GlobalService {
 
      // Sign Out
       signOutService(){
-      this.refreshtoken = '';
-      this.loginStatus = false;
-      localStorage.removeItem('refresh-token-set');
-      localStorage.removeItem('token-set');
-      let signoutURL  = '/boot/oauth/logout';
-      return this.http.post(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res)
-                .subscribe(
-                  response =>{
-                      this.router.navigate(['/']);
-                  }
-                )
-  }
+        this.refreshtoken = '';
+        this.loginStatus = false;
+        localStorage.removeItem('refresh-token-set');
+        localStorage.removeItem('orderId');
+        localStorage.removeItem('items');
+        this.cartItems = new Array() ;
+        let signoutURL  = '/boot/oauth/logout';
+        return this.http.post(signoutURL,  {headers: this.getHeaders()}  ).map((res: Response) => res)
+                  
+    }
 }

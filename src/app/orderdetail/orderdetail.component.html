@@ -12,22 +12,22 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 orderdetails-wrap">
                     roshan{{order.orderId}}tiwari
                     <div class="col-md-9 col-sm-12 col-xs-12">
-                        <div class="col-xs-11">
+                        <div class="">
                             <h1>
                                 ORDER DETAIL
                             </h1>
                         </div>
-                        <div class="col-xs-1">
+                        <!--<div class="col-xs-1">
                             <a title="print this page" href="javascript:window.print();"> Print</a>
-                        </div>
-                        <div class="col-xs-12">
+                        </div>-->
+                        <!--<div class="col-xs-12">
                             <a role="menuitem" href="#" title="Back to order history">Back to Order History</a>
-                        </div>
-                        <div class="row">
-                            <ul class="col-xs-12 col-sm-8">
+                        </div>-->
+                        <div class="">
+                            <ul class="col-xs-12 col-sm-12 orderdetails">
                                 <li><span>Order Number: </span>{{order.orderId}}</li>
                                 <li><span>Date Placed: </span>
                                     {{order.submittedDate}}
@@ -37,12 +37,12 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="row">
-                            <div class="row">
-                                <h2>
+                        <div class="">
+                            <div>
+                                <h1>
                                     SHIPPING
-                                </h2>
-                                <div class="col-xs-12 col-md-4">
+                                </h1>
+                                <div class="col-xs-12 col-md-6">
                                     <div class="col-label">Ship To</div>
                                     <span>
                                     Roshan&nbsp;Kumar<br>9595 Shore Ave.<br>
@@ -51,28 +51,29 @@
                                     <p>(804) 104-7000</p>
                                     </span>
                                 </div>
-                                <div class="col-xs-12 col-md-4">
+                                <div class="col-xs-12 col-md-6">
                                     <div class="col-label">
                                     METHOD
                                     </div>
                                     <span>&nbsp;$0.00</span>
                                 </div>
-                                 <div class="col-xs-12 col-md-4">
-                                    <h2>
+                                 
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                    <!--<h1>
                                         ORDER SUMMARY
-                                    </h2>
+                                    </h1>
                                     <div class="col-xs-8">
                                         <span>Total</span>
                                     </div>
                                     <div class="col-xs-4 right">
                                         <span>{{order.orderSubTotal}}</span>
-                                    </div>
+                                    </div>-->
                                 </div>
-                            </div>
                             <div class="row">
-                                <h2>
-                                    ITEMS SHIPPED
-                                </h2>
+                                <h1> ITEMS SHIPPED</h1>
+                                   
+                               
                                 <div class="col-labels hidden-xs">
                                     <div class="col-xs-12 col-sm-5">
                                     <div class="col-label">
@@ -97,7 +98,7 @@
                                 </div>
                                 <div *ngFor="let item of order.orderItems"class="row">
                                     <div class="col-xs-12 col-sm-5">
-                                    <img class="col-xs-12 col-sm-4" src="">
+                                    <img src="/src/images/products/{{item.productId}}_t.jpg">
                                     <div class="item-group col-xs-12 col-sm-8">
                                         <span>Throw Blanket</span> <span>Kiev Paisley</span> <span>
                                         SKU	#{{item.catalogRefId}}</span><span>

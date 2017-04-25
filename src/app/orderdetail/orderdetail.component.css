@@ -1,0 +1,18 @@
+.orderdetails li{
+    list-style: none;
+    font-weight: 600;
+}
+.orderdetails-wrap{
+    margin-top: 14px;
+}
+h1 {
+    font-size: 20px;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 13px;
+}
+.col-label {
+    font-weight: bold;
+}
+.orderdetails-wrap img {
+    width: 38%;
+}

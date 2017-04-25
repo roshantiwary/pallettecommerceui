@@ -7,8 +7,8 @@ import { ActivatedRoute } from '@angular/router' ;
 @Component({
   selector: 'app-orderdetail',
   templateUrl: './orderdetail.component.html',
-  styleUrls: ['./orderdetail.component.css'],
-  providers: [GlobalService]
+  styleUrls: ['./orderdetail.component.css']
+
 })
 export class OrderdetailComponent implements OnInit {
 

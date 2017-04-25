@@ -45,7 +45,12 @@ export class NavComponent implements OnInit {
 	}
   
   signout(){
-        this.cartdetails.signOutService();   
+        this.cartdetails.signOutService()
+            .subscribe(
+                    response =>{
+                         this.cartdetails.firstName = '';
+                    }
+                  )
   }
 
   private getHeaders(){

@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   private _values1 = ["1", "2", "3"];
   constructor(public globalService: GlobalService) {
       console.log('ewq')
-      this.globalService.cartItems = this.globalService.getCart() ;
+     // this.globalService.cartItems = this.globalService.getCart() ;
       
    }
   ngAfterViewInit(){
