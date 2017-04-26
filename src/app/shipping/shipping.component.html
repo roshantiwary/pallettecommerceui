@@ -56,13 +56,9 @@
                       <button type="submit" class="btn btn-success" [disabled]="!shipAddForm.form.valid" >Submit</button>
                     </form>
                     <div [hidden] = "!formdisplay">
-                          {{address.firstName}}
-                        {{address.lastName}}
-                        {{address.address1}}
-                        {{address.address2}}
-                        {{address.address3}}
-                        {{address.city}}
-                          {{address.state}}
+                         <p>  {{address.firstName}},   {{address.lastName}}</p>
+                        <p>{{address.address1}}, {{address.address2}}</p>
+                        <p>{{address.state}}, {{address.city}}</p>
                       <!--<button (click)="showPayment()"> OK </button>-->
                       </div>
                     </div>
