@@ -23,3 +23,6 @@
 .panel {
     border: none;
 }
+a , a:hover{
+    color: #e85826;
+}

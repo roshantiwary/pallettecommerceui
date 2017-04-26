@@ -16,3 +16,12 @@ h1 {
 .orderdetails-wrap img {
     width: 38%;
 }
+.itemshipped{
+    display: inline-block;
+}
+.itemshipped span{
+    display: block;
+}
+.nopadding{
+    padding:0 ;
+}

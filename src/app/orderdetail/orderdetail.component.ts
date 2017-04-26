@@ -16,6 +16,7 @@ constructor(private route: ActivatedRoute, private dataService: DataService, pri
 
 order: any;
 orderId: string;
+addressResponse:any;
 
 ngOnInit() {
    this.order = this.route.params.subscribe(params => {
@@ -36,6 +37,8 @@ getOrder(orderId) {
                        response => {
                         console.log(JSON.stringify(response)) ;
                         this.order = response;
+                        console.log( response.addressResponse) ;
+                        this.addressResponse = response.addressResponse
                        },
                        error => {
                         //Remove Token if exists
