@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json --port 8080",
+    "start": "ng build && node server.js",
+    "start-serve": "ng serve --proxy-config proxy.config.json --port 80",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,6 +23,8 @@
     "@angular/router": "^3.4.0",
     "amp-dash": "^1.0.4",
     "core-js": "^2.4.1",
+    "express": "^4.15.2",
+    "http-proxy": "^1.16.2",
     "rxjs": "^5.1.0",
     "zone.js": "^0.7.6"
   },
