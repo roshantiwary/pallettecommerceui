@@ -28,10 +28,12 @@ export class StoresComponent implements OnInit {
     this.dataService.browse()
         .subscribe(
                     response => {
+                      console.log('HERE');
                     this.stores = response.brands;
                     },
                     error => {
                       if(error.status == 401) {
+                        console.log('HERE');
                         //Remove Token if exists
                         localStorage.removeItem('refresh-token-set');
                         localStorage.removeItem('token-set');

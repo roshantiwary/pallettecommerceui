@@ -6,7 +6,7 @@ Search Product: <input type="text" [(ngModel)]="filterproduct">
 <div class="col-xs-12 col-md-4" *ngFor="let product of products | product: filterproduct" id="{{product.id}}">
   <article  class="list" >
     <div class="info">
-       <img src="/src/images/products/{{product.imageResponse.thumbnailImageUrl}}">
+       <img src="/images/products/{{product.imageResponse.thumbnailImageUrl}}">
        <div class="item-desc">
           <h4>{{product.productTitle}}</h4>
           <div class="description">{{product.productDescription}}</div>

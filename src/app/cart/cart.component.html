@@ -8,7 +8,7 @@
     </div>
     <div *ngFor="let  item of  globalService.cartItems; let i = index" class="row cartitem" id="{{item.productId}}"> 
     
-        <div class="col-md-4"><img src="/src/images/products/{{item.productId}}_t.jpg"></div>
+        <div class="col-md-4"><img src="/images/products/{{item.productId}}_t.jpg"></div>
         <div class="col-md-8">
             <div class="close" (click) = "removeProduct(item.catalogRefId, item.productId)">×</div>
             <h4>{{item.productTitle}}</h4>

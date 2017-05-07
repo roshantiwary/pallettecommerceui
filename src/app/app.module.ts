@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { StoresComponent } from './stores/stores.component';
-import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import {app_routing} from './MainRouting';
 import { RoutingComponent } from './routing/routing.component'
@@ -32,37 +31,33 @@ import { AmpDashModule } from 'amp-dash';
   declarations: [
     AppComponent,
     StoresComponent,
-     NavComponent,
-     ProductComponent,
-     LoginComponent,
-     DialogDirective,
-     CartComponent,
-     AppfooterComponent,
-     ShippingComponent,
-     AccountComponent,
-     ProfileComponent,
-     AddressbookComponent,
-     OrderdetailComponent,
-     OrderhistoryComponent,
-     ConfirmationComponent,
-     RegistrationComponent,
-   // StoresComponent,
-    // FooterComponent,
-     // ProductListComponent,
-    // CartComponent,
-      RoutingComponent,
+    NavComponent,
+    ProductComponent,
+    LoginComponent,
+    DialogDirective,
+    CartComponent,
+    AppfooterComponent,
+    ShippingComponent,
+    AccountComponent,
+    ProfileComponent,
+    AddressbookComponent,
+    OrderdetailComponent,
+    OrderhistoryComponent,
     ConfirmationComponent,
-    ProductPipe,
-   
+    RegistrationComponent,
+    RoutingComponent,
+    ConfirmationComponent,
+
+    ProductPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    app_routing,
-    AmpDashModule 
+    AmpDashModule,
+    app_routing
   ],
-  providers: [DataService ,AuthService ],
+  providers: [DataService , AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

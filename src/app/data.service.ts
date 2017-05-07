@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map' ;
 import 'rxjs/add/operator/mergeMap';
 @Injectable()
 export class DataService {
-  private OauthLoginEndPointUrl = '/boot/oauth/token';  // Oauth Login EndPointUrl to web API
+  private OauthLoginEndPointUrl = 'http://www.palletteapart.com/boot/oauth/token';  // Oauth Login EndPointUrl to web API
   private clientId ='acme';
   private clientSecret ='acmesecret';
   private grant_type = 'client_credentials';
@@ -25,7 +25,7 @@ export class DataService {
   
     let body = 'grant_type=client_credentials&client_id=acme&client_secret=acmesecret';
     let params1 = new URLSearchParams();
-    return this.http.post('/boot/oauth/token',  body , {
+    return this.http.post('http://www.palletteapart.com/boot/oauth/token',  body , {
             headers: headers
           }).map((res: Response) => {
               this.data = res.json().access_token.toString();
@@ -53,14 +53,14 @@ export class DataService {
                 
               });
             
-            return  this.http.get('/boot/rest/api/v1/brands', options ).map((res: Response) => res.json())
+            return  this.http.get('http://www.palletteapart.com/boot/rest/api/v1/brands', options ).map((res: Response) => res.json())
               
   }
   // GET THE PRODUCTS
   product(id){
       //let params: URLSearchParams = new URLSearchParams();
         //params.set('client_id',id );
-        let url = "/boot/rest/api/v1/products/brand/"+ id;
+        let url = "http://www.palletteapart.com/boot/rest/api/v1/products/brand/"+ id;
         
        return this.http
         .get(url, {headers: this.getHeaders()}).map((res: Response) => res.json())
