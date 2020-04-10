@@ -3,7 +3,7 @@ import { Http , URLSearchParams , Response  } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class AuthService {
-  private OauthLoginEndPointUrl = '/oauth/token';  // Oauth Login EndPointUrl to web API
+  private OauthLoginEndPointUrl = 'http://localhost:8080/oauth/token';  // Oauth Login EndPointUrl to web API
   private clientId ='acme';
   private clientSecret ='acmesecret';
   private grant_type = 'client_credentials';

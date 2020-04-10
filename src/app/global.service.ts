@@ -24,9 +24,9 @@ export class GlobalService {
   addtoCart(selectsize:string, qty:number, orderID:string, sku:string ){
             let url:string;
             if(qty>1){
-               url = "/rest/api/v1/cart/update/";
+               url = "http://localhost:8080/rest/api/v1/cart/update/";
             }else{
-                url = "/rest/api/v1/cart/add/";
+                url = "http://localhost:8080/rest/api/v1/cart/add/";
             }
            
             let params: URLSearchParams = new URLSearchParams();
@@ -42,7 +42,7 @@ export class GlobalService {
 		
 	    }
     removeProduct(sku:string, itemID, orderID:string){
-       let url:string =  "/rest/api/v1/cart/remove/";
+       let url:string =  "http://localhost:8080/rest/api/v1/cart/remove/";
 
        return this.http
                         .post(url, JSON.stringify({ skuId: sku, productId: itemID, orderId:  orderID , profileId : '123'},) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json())
@@ -71,14 +71,14 @@ export class GlobalService {
   
   // Get Logged-In Profile for Account Pages
   getProfile() {
-     let url:string = "/private/rest/api/v1/userprofile/user";
+     let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/user";
      return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
   // Get Order Summary for Checkout Pages
   getCart() {
      let orderID = localStorage.getItem('orderId');
-     let url:string = "/rest/api/v1/cart/" + orderID + "/details";
+     let url:string = "http://localhost:8080/rest/api/v1/cart/" + orderID + "/details";
      this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json())
              .subscribe(
                        response => {
@@ -111,50 +111,50 @@ export class GlobalService {
   // Get Order History for a Profile
   getOrderHistory() {
     
-    let url:string = "/private/rest/api/v1/userprofile/account/orders";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/orders";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
   // Get Order Detail
   getOrderDetail(orderId:string) {
-    let url:string = "/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/" + orderId + "/orderDetail";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
   // Get Addresses for a Profile
   getProfileAddresses() {
-    let url:string = "/private/rest/api/v1/userprofile/account/addresses";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/addresses";
     return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
   // Edit Address of a Profile  
   editAddress(address:any){
-    let url:string = "/private/rest/api/v1/userprofile/account/address/edit";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/address/edit";
     return this.http.put(url, JSON.stringify(address,) ,  {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
   
   // Remove Address from a Profile  
   removeAddress(addressKey:string){
-    let url:string = "/private/rest/api/v1/userprofile/account/address/"+ addressKey +"/remove";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/address/"+ addressKey +"/remove";
     return this.http.delete(url, {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
   // Get Profile Address
   getProfileAddress(addressKey:string) {
-    let url:string = "/private/rest/api/v1/userprofile/account/address/" + addressKey;
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/address/" + addressKey;
     return this.http.get(url, {headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
  // Address Address of a Profile  
   addAddress(address:any){
-    let url:string = "/private/rest/api/v1/userprofile/account/address/add";
+    let url:string = "http://localhost:8080/private/rest/api/v1/userprofile/account/address/add";
     return this.http.post(url, JSON.stringify(address,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
 
   // User registration
   registration(user : any ) {
-    let url:string = "/rest/api/v1/account/create";
+    let url:string = "http://localhost:8080/rest/api/v1/account/create";
     return this.http.post(url, JSON.stringify(user,),{headers: this.getHeaders()}  ).map((res: Response) => res.json());
   }
 
@@ -180,12 +180,12 @@ export class GlobalService {
   // get all the address
   getAllAddress(orderID){
     // shipmentAddress
-      let url:string = "/rest/api/v1/shipping/address/savedAddress/" + orderID ;
+      let url:string = "http://localhost:8080/rest/api/v1/shipping/address/savedAddress/" + orderID ;
       return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
 
   goTopayment(addressid, orderId){
-      let url:string = "/rest/api/v1/shipping/address/set/" + addressid + "/to/" + orderId ;
+      let url:string = "http://localhost:8080/rest/api/v1/shipping/address/set/" + addressid + "/to/" + orderId ;
       return this.http.get(url, {headers: this.getHeaders()}).map((res: Response)=> res.json());
   }
     // openCart(){
