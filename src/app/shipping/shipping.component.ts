@@ -48,7 +48,7 @@ export class ShippingComponent implements OnInit {
   submitted = false;
 
   submitAddress() {
-    let addAddressURL: string = '/boot/rest/api/v1/shipping/address/add';
+    let addAddressURL: string = '/rest/api/v1/shipping/address/add';
     this.submitted = true;
   
     this.model.orderId = localStorage.getItem('orderId');
@@ -73,7 +73,7 @@ export class ShippingComponent implements OnInit {
   ngAfterViewInit(){
    this.removeCart =  document.getElementById('cart');
    this.payuform = document.getElementById('payuform');
-   this.paymentUrl = "/boot/"+  localStorage.getItem('orderId') + "/paynow" ;
+   this.paymentUrl = "/"+  localStorage.getItem('orderId') + "/paynow" ;
    this.payuform.action = this.paymentUrl;
    
   }

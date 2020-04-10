@@ -1,8 +1,8 @@
 {
-	"/boot/*" : {
-		"target": "http://www.palletteapart.com",
-		"changeOrigin": true,
-	    "secure": false,
+	"/rest/*" : {
+		"target": "http://localhost:8080",
+		"changeOrigin": false,
+	    "secure": true,
 	    "logLevel": "debug"
 	}
 }

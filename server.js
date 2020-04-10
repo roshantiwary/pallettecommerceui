@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const httpProxy = require('http-proxy');
-var apiForwardingURL = 'http://www.palletteapart.com';
+var apiForwardingURL = 'http://localhost:8080';
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/dist'));
 
 var apiProxy = httpProxy.createProxyServer();
 
-app.all("/boot/*", function (req, res) {
+app.all("/rest/*", function (req, res) {
   console.log(req);
   apiProxy.web(req, res, {
     target: apiForwardingURL,
