@@ -24,7 +24,6 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 import { RegistrationComponent } from './registration/registration.component';
 import { ProductPipe } from './product.pipe';
-import { AmpDashModule } from 'amp-dash';
 
 
 @NgModule({
@@ -54,7 +53,6 @@ import { AmpDashModule } from 'amp-dash';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AmpDashModule,
     app_routing
   ],
   providers: [DataService , AuthService ],
